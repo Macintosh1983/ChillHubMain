@@ -10,22 +10,18 @@
 ░ ░       ░  ░  ░ ░      ░  ░    ░  ░ ░           ░          ░  ░░  ░        ░  ░          ░         ░  ░░ ░      
 ░                                                                                                        ░        
 ]]
- 
 --Settings
 local settings_table = {
-	outlinecolor = Color3.fromRGB(255, 255, 255),
-	chamscolor = Color3.fromRGB(255, 0, 0),
+	outlinecolor = Color3.fromRGB(0, 247, 255),
+	chamscolor = Color3.fromRGB(255, 0, 179),
 	teamcolor = false,
 }
 
 --version
-local version = '1'
+local version = '1.2'
 
 --Notif system
 loadstring(game:HttpGet'https://raw.githubusercontent.com/Macintosh1983/ChillinsNotificationSystem/main/main.lua')()
-
-notify("Universal Chams", 'Version '..version,"5")
-
 
 --Boring Stuff Below
 local ESPFOLDER = Instance.new('Folder', game.CoreGui)
@@ -42,29 +38,8 @@ Outline.Color3 = settings_table.outlinecolor
 local PartsBox = Instance.new("BoxHandleAdornment")
 PartsBox.Name = "Yes"
 PartsBox.AlwaysOnTop = true
-PartsBox.Transparency = .7
+PartsBox.Transparency = .5
 PartsBox.ZIndex = 0
-
-local NameTag = Instance.new("BillboardGui")
-NameTag.Name = "nilNameTag"
-NameTag.Enabled = false
-NameTag.Size = UDim2.new(0, 200, 0, 50)
-NameTag.AlwaysOnTop = true
-NameTag.StudsOffset = Vector3.new(0, 1.8, 0)
-
-local Tag = Instance.new("TextLabel", NameTag)
-Tag.Name = "Tag"
-Tag.BackgroundTransparency = 1
-Tag.Position = UDim2.new(0, -50, 0, 0)
-Tag.Size = UDim2.new(0, 300, 0, 20)
-Tag.TextSize = 20
-Tag.TextColor3 = Color3.fromRGB(0, 0, 0)
-Tag.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
-Tag.TextStrokeTransparency = 0.4
-Tag.Text = "nil"
-Tag.Font = Enum.Font.SourceSansBold
-Tag.TextScaled = false
-
 
 local LoadCharacter = function(v)
 for i,v in next, people:GetPlayers() do
@@ -83,15 +58,15 @@ for i,v in next, people:GetPlayers() do
 			funny.Name = v.Name .. "Outline"
 			funny.Parent = vHolder
 			funny.Adornee = v
-			local funny2 = PartsBox:Clone()
-			funny2.Name = v.Name .. "Box"
-			funny2.Parent = vHolder
-			funny2.Adornee = v
-			funny2.Size = v.size
+			local Box = PartsBox:Clone()
+			Box.Name = v.Name .. "Box"
+			Box.Parent = vHolder
+			Box.Adornee = v
+			Box.Size = v.size
 			if settings_table.teamcolor == true then 
-				funny2.Color3 = Tcolor
+				Box.Color3 = Tcolor
 			else if settings_table.teamcolor == false then 
-				funny2.Color3 = settings_table.chamscolor
+				Box.Color3 = settings_table.chamscolor
 									end
 								end
 							end
@@ -103,7 +78,7 @@ for i,v in next, people:GetPlayers() do
 
 local UnloadCharacter = function(v)
 		local vHolder = ESPFOLDER:FindFirstChild(v.Name)
-			if vHolder and (vHolder:FindFirstChild(v.Name .. "Box") ~= nil or vHolder:FindFirstChild(v.Name .. "NameTag") ~= nil) then
+			if vHolder and (vHolder:FindFirstChild(v.Name .. "Box") ~= nil or vHolder:FindFirstChild(v.Name .. "NameTag") ~= nil) or vHolder:FindFirstChild(v.Name .. "Outline") then
 				vHolder:ClearAllChildren()
 		end
 end
@@ -138,13 +113,11 @@ end
 for i,v in pairs(game:GetService("Players"):GetPlayers()) do
 	task.spawn(function() pcall(LoadPlayer, v) end)
 end
-
 game:GetService("Players").PlayerAdded:Connect(function(v)
 	pcall(LoadPlayer, v)
 end)
-
 game:GetService("Players").PlayerRemoving:Connect(function(v)
 	pcall(UnloadPlayer, v)
 end)
 
-game:GetService("Players").LocalPlayer.NameDisplayDistance = 0
+notify("Universal Chams", 'Version '..version,"5")
