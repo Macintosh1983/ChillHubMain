@@ -99,7 +99,7 @@ for i,v in next, people:GetPlayers() do
 			if settings_table.teamcolor == true then 
 				Name.Tag.TextColor3 = Tcolor
 			else if settings_table.teamcolor == false then 
-				Name.Tag.TextColor3 = settings_table.chamscolor
+				Name.Tag.TextColor3 = settings_table.textcolor
 									end
 								end
 							end
