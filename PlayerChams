@@ -15,7 +15,8 @@ local settings_table = {
 	outlinecolor = Color3.fromRGB(255, 255, 255),
 	chamscolor = Color3.fromRGB(207, 66, 0),
 	textcolor = Color3.fromRGB(184, 108, 190),
-	teamcolor = false,
+	teamcolor = true,
+	names = true
 }
 
 --version
@@ -89,7 +90,12 @@ for i,v in next, people:GetPlayers() do
 								end
 			local Name = NameTag:Clone()
 			Name.Name = v.Parent.Name .. "NameTag"
-			Name.Enabled = true
+			if settings_table.names == true then
+				Name.Enabled = true
+			else if settings_table.names == false then
+				Name.Enabled = false
+				end
+			end
 			Name.Parent = vHolder
 			Name.Adornee = v.Parent:WaitForChild("Head")
 			if not Name.Adornee then
