@@ -1,17 +1,6 @@
---[[
- ▄████▄   ██░ ██  ██▓ ██▓     ██▓     ██▓ ███▄    █     ▄▄▄       ██ ▄█▀▄▄▄          ███▄ ▄███▓ ▄▄▄       ▄████▄  
-▒██▀ ▀█  ▓██░ ██▒▓██▒▓██▒    ▓██▒    ▓██▒ ██ ▀█   █    ▒████▄     ██▄█▒▒████▄       ▓██▒▀█▀ ██▒▒████▄    ▒██▀ ▀█  
-▒▓█    ▄ ▒██▀▀██░▒██▒▒██░    ▒██░    ▒██▒▓██  ▀█ ██▒   ▒██  ▀█▄  ▓███▄░▒██  ▀█▄     ▓██    ▓██░▒██  ▀█▄  ▒▓█    ▄ 
-▒▓▓▄ ▄██▒░▓█ ░██ ░██░▒██░    ▒██░    ░██░▓██▒  ▐▌██▒   ░██▄▄▄▄██ ▓██ █▄░██▄▄▄▄██    ▒██    ▒██ ░██▄▄▄▄██ ▒▓▓▄ ▄██▒
-▒ ▓███▀ ░░▓█▒░██▓░██░░██████▒░██████▒░██░▒██░   ▓██░    ▓█   ▓██▒▒██▒ █▄▓█   ▓██▒   ▒██▒   ░██▒ ▓█   ▓██▒▒ ▓███▀ ░ https://discord.gg/fCvAWtFBFh
-░ ░▒ ▒  ░ ▒ ░░▒░▒░▓  ░ ▒░▓  ░░ ▒░▓  ░░▓  ░ ▒░   ▒ ▒     ▒▒   ▓▒█░▒ ▒▒ ▓▒▒▒   ▓▒█░   ░ ▒░   ░  ░ ▒▒   ▓▒█░░ ░▒ ▒  ░
-  ░  ▒    ▒ ░▒░ ░ ▒ ░░ ░ ▒  ░░ ░ ▒  ░ ▒ ░░ ░░   ░ ▒░     ▒   ▒▒ ░░ ░▒ ▒░ ▒   ▒▒ ░   ░  ░      ░  ▒   ▒▒ ░  ░  ▒   
-░         ░  ░░ ░ ▒ ░  ░ ░     ░ ░    ▒ ░   ░   ░ ░      ░   ▒   ░ ░░ ░  ░   ▒      ░      ░     ░   ▒   ░        
-░ ░       ░  ░  ░ ░      ░  ░    ░  ░ ░           ░          ░  ░░  ░        ░  ░          ░         ░  ░░ ░      
-░                                                                                                        ░        
-]]
 --Settings
 local settings_table = {
+	Enabled = true,
 	outlinecolor = Color3.fromRGB(255, 255, 255),
 	chamscolor = Color3.fromRGB(207, 66, 0),
 	textcolor = Color3.fromRGB(184, 108, 190),
@@ -19,8 +8,10 @@ local settings_table = {
 	names = true
 }
 
+
+
 --version
-local version = '1.4'
+local version = '1.6'
 
 --Notif system
 loadstring(game:HttpGet'https://raw.githubusercontent.com/Macintosh1983/ChillHubMain/main/NotifSystem')()
@@ -97,11 +88,11 @@ for i,v in next, people:GetPlayers() do
 				end
 			end
 			Name.Parent = vHolder
-			Name.Adornee = v.Parent:WaitForChild("Head")
+			Name.Adornee = char.Head
 			if not Name.Adornee then
 				return UnloadCharacter(v)
 			end
-			Name.Tag.Text = v.Parent.Name
+			Name.Tag.Text = char.Humanoid.Parent.Name
 			if settings_table.teamcolor == true then 
 				Name.Tag.TextColor3 = Tcolor
 			else if settings_table.teamcolor == false then 
@@ -149,7 +140,9 @@ local UnloadPlayer = function(v)
 	end
 end
 
-for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+function chams()
+
+for i,v in next, game:GetService("Players"):GetPlayers() do
 	task.spawn(function() pcall(LoadPlayer, v) end)
 end
 game:GetService("Players").PlayerAdded:Connect(function(v)
@@ -159,4 +152,13 @@ game:GetService("Players").PlayerRemoving:Connect(function(v)
 	pcall(UnloadPlayer, v)
 end)
 
-notify("Universal Chams", 'Version '..version,"5")
+end
+
+if settings_table.Enabled == true then
+	chams()
+	notify("Universal Chams", 'Version: '..version,"5")
+else if settings_table.Enabled == false then
+	game.CoreGui.	ESPFOLDER:Destroy()
+	notify("Universal Chams", 'Disabled!',"5")
+	end
+end
