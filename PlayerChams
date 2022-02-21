@@ -162,3 +162,4 @@ else if settings_table.Enabled == false then
 	notify("Universal Chams", 'Disabled!',"5")
 	end
 end
+
