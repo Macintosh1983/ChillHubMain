@@ -16,7 +16,7 @@ local version = '1.6'
 --Notif system
 loadstring(game:HttpGet'https://raw.githubusercontent.com/Macintosh1983/ChillHubMain/main/NotifSystem')()
 
---Boring Stuff Below
+--Boring Stuff Below (DO NOT CHANGE ANYTHING BELOW)
 local ESPFOLDER = Instance.new('Folder', game.CoreGui)
 ESPFOLDER.Name = 'ESPFOLDER'
 
@@ -162,4 +162,3 @@ else if settings_table.Enabled == false then
 	notify("Universal Chams", 'Disabled!',"5")
 	end
 end
-
