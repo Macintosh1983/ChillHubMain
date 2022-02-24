@@ -8,26 +8,41 @@
    Made by Chillin aka mac!                                                                                                                                                      
 ]]
 
-
 local ChamsMenu = Instance.new("ScreenGui")
 local Background = Instance.new("Frame")
 local Title = Instance.new("Frame")
 local Bar = Instance.new("Frame")
 local VersionLabel = Instance.new("TextLabel")
 local NameLabel = Instance.new("TextLabel")
-local TeamColor = Instance.new("TextButton")
+local Names = Instance.new("TextButton")
 local UICorner = Instance.new("UICorner")
 local TextLabel = Instance.new("TextLabel")
-local Names = Instance.new("TextButton")
+local Enable = Instance.new("TextButton")
 local UICorner_2 = Instance.new("UICorner")
 local TextLabel_2 = Instance.new("TextLabel")
-local Enable = Instance.new("TextButton")
+local VersionLabel_2 = Instance.new("TextLabel")
+local TeamColor = Instance.new("TextButton")
 local UICorner_3 = Instance.new("UICorner")
 local TextLabel_3 = Instance.new("TextLabel")
-local VersionLabel_2 = Instance.new("TextLabel")
+local ColourWheel = Instance.new("ImageButton")
+local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+local Picker = Instance.new("ImageLabel")
+local DarknessPicker = Instance.new("ImageButton")
+local UIGradient = Instance.new("UIGradient")
+local UIAspectRatioConstraint_2 = Instance.new("UIAspectRatioConstraint")
+local Slider = Instance.new("ImageLabel")
+local Outline = Instance.new("TextButton")
+local UICorner_4 = Instance.new("UICorner")
+local Body = Instance.new("TextButton")
+local UICorner_5 = Instance.new("UICorner")
+local TextColor = Instance.new("TextButton")
+local UICorner_6 = Instance.new("UICorner")
+local Color3Value = Instance.new("Color3Value")
+
+--Properties:
 
 ChamsMenu.Name = "ChamsMenu"
-ChamsMenu.Parent = game.CoreGui
+ChamsMenu.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ChamsMenu.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Background.Name = "Background"
@@ -36,8 +51,11 @@ Background.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Background.BackgroundTransparency = 0.650
 Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Background.BorderSizePixel = 2
-Background.Position = UDim2.new(0.00874999911, 0, 0.12291351, 0)
+Background.Position = UDim2.new(0, 13, 0, 81)
 Background.Size = UDim2.new(0, 234, 0, 497)
+
+Color3Value.Name = "ColorValue"
+Color3Value.Parent = ChamsMenu
 
 Title.Name = "Title"
 Title.Parent = Background
@@ -76,30 +94,6 @@ NameLabel.TextSize = 19.000
 NameLabel.TextStrokeTransparency = 0.000
 NameLabel.TextWrapped = true
 
-TeamColor.Name = "TeamColor"
-TeamColor.Parent = Background
-TeamColor.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-TeamColor.Position = UDim2.new(0, 10, 0, 95)
-TeamColor.Size = UDim2.new(0, 20, 0, 20)
-TeamColor.Font = Enum.Font.SourceSans
-TeamColor.Text = ""
-TeamColor.TextColor3 = Color3.fromRGB(0, 0, 0)
-TeamColor.TextSize = 14.000
-
-UICorner.CornerRadius = UDim.new(0, 200)
-UICorner.Parent = TeamColor
-
-TextLabel.Parent = TeamColor
-TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.BackgroundTransparency = 1.000
-TextLabel.Position = UDim2.new(1.20000005, 0, 0, 0)
-TextLabel.Size = UDim2.new(0, 139, 0, 20)
-TextLabel.Font = Enum.Font.GothamSemibold
-TextLabel.Text = "Team Color Enabled"
-TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel.TextSize = 14.000
-TextLabel.TextXAlignment = Enum.TextXAlignment.Left
-
 Names.Name = "Names"
 Names.Parent = Background
 Names.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
@@ -110,19 +104,19 @@ Names.Text = ""
 Names.TextColor3 = Color3.fromRGB(0, 0, 0)
 Names.TextSize = 14.000
 
-UICorner_2.CornerRadius = UDim.new(0, 200)
-UICorner_2.Parent = Names
+UICorner.CornerRadius = UDim.new(0, 200)
+UICorner.Parent = Names
 
-TextLabel_2.Parent = Names
-TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_2.BackgroundTransparency = 1.000
-TextLabel_2.Position = UDim2.new(1.20000005, 0, 0, 0)
-TextLabel_2.Size = UDim2.new(0, 98, 0, 20)
-TextLabel_2.Font = Enum.Font.GothamSemibold
-TextLabel_2.Text = "Names Enabled"
-TextLabel_2.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_2.TextSize = 14.000
-TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
+TextLabel.Parent = Names
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Position = UDim2.new(1.20000005, 0, 0, 0)
+TextLabel.Size = UDim2.new(0, 98, 0, 20)
+TextLabel.Font = Enum.Font.GothamSemibold
+TextLabel.Text = "Names Enabled"
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextSize = 14.000
+TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 Enable.Name = "Enable"
 Enable.Parent = Background
@@ -134,25 +128,25 @@ Enable.Text = ""
 Enable.TextColor3 = Color3.fromRGB(0, 0, 0)
 Enable.TextSize = 14.000
 
-UICorner_3.CornerRadius = UDim.new(0, 200)
-UICorner_3.Parent = Enable
+UICorner_2.CornerRadius = UDim.new(0, 200)
+UICorner_2.Parent = Enable
 
-TextLabel_3.Parent = Enable
-TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_3.BackgroundTransparency = 1.000
-TextLabel_3.Position = UDim2.new(1.20000005, 0, 0, 0)
-TextLabel_3.Size = UDim2.new(0, 98, 0, 20)
-TextLabel_3.Font = Enum.Font.GothamSemibold
-TextLabel_3.Text = "Chams Disabled"
-TextLabel_3.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_3.TextSize = 14.000
-TextLabel_3.TextXAlignment = Enum.TextXAlignment.Left
+TextLabel_2.Parent = Enable
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.Position = UDim2.new(1.20000005, 0, 0, 0)
+TextLabel_2.Size = UDim2.new(0, 98, 0, 20)
+TextLabel_2.Font = Enum.Font.GothamSemibold
+TextLabel_2.Text = "Chams Disabled"
+TextLabel_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_2.TextSize = 14.000
+TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
 
 VersionLabel_2.Name = "VersionLabel"
 VersionLabel_2.Parent = Background
 VersionLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 VersionLabel_2.BackgroundTransparency = 1.000
-VersionLabel_2.Position = UDim2.new(0.012820513, 0, 0.957746506, 0)
+VersionLabel_2.Position = UDim2.new(0, 3, 0, 476)
 VersionLabel_2.Size = UDim2.new(0, 81, 0, 21)
 VersionLabel_2.Font = Enum.Font.SciFi
 VersionLabel_2.Text = "Version: Nil"
@@ -161,54 +155,182 @@ VersionLabel_2.TextSize = 14.000
 VersionLabel_2.TextTransparency = 0.770
 VersionLabel_2.TextXAlignment = Enum.TextXAlignment.Left
 
+TeamColor.Name = "TeamColor"
+TeamColor.Parent = Background
+TeamColor.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+TeamColor.Position = UDim2.new(0, 10, 0, 95)
+TeamColor.Size = UDim2.new(0, 20, 0, 20)
+TeamColor.Font = Enum.Font.SourceSans
+TeamColor.Text = ""
+TeamColor.TextColor3 = Color3.fromRGB(0, 0, 0)
+TeamColor.TextSize = 14.000
 
+UICorner_3.CornerRadius = UDim.new(0, 200)
+UICorner_3.Parent = TeamColor
 
-local function GuiDrag()
+TextLabel_3.Parent = TeamColor
+TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.BackgroundTransparency = 1.000
+TextLabel_3.Position = UDim2.new(1.20000005, 0, 0, 0)
+TextLabel_3.Size = UDim2.new(0, 139, 0, 20)
+TextLabel_3.Font = Enum.Font.GothamSemibold
+TextLabel_3.Text = "Team Color Enabled"
+TextLabel_3.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_3.TextSize = 14.000
+TextLabel_3.TextXAlignment = Enum.TextXAlignment.Left
+
+ColourWheel.Name = "ColourWheel"
+ColourWheel.Parent = Background
+ColourWheel.Active = false
+ColourWheel.AnchorPoint = Vector2.new(0.5, 0.5)
+ColourWheel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ColourWheel.BackgroundTransparency = 1.000
+ColourWheel.BorderSizePixel = 0
+ColourWheel.Position = UDim2.new(0.38535735, 0, 0.530196071, 0)
+ColourWheel.Selectable = false
+ColourWheel.Size = UDim2.new(0.73657006, 0, 0.308176965, 0)
+ColourWheel.Image = "http://www.roblox.com/asset/?id=6020299385"
+
+UIAspectRatioConstraint.Parent = ColourWheel
+UIAspectRatioConstraint.AspectRatio = 1.000
+
+Picker.Name = "Picker"
+Picker.Parent = ColourWheel
+Picker.AnchorPoint = Vector2.new(0.5, 0.5)
+Picker.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Picker.BackgroundTransparency = 1.000
+Picker.BorderSizePixel = 0
+Picker.Position = UDim2.new(0.5, 0, 0.5, 0)
+Picker.Size = UDim2.new(0.0900257826, 0, 0.0900257975, 0)
+Picker.Image = "http://www.roblox.com/asset/?id=3678860011"
+
+DarknessPicker.Name = "DarknessPicker"
+DarknessPicker.Parent = Background
+DarknessPicker.Active = false
+DarknessPicker.AnchorPoint = Vector2.new(0.5, 0.5)
+DarknessPicker.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+DarknessPicker.BackgroundTransparency = 1.000
+DarknessPicker.BorderSizePixel = 0
+DarknessPicker.Position = UDim2.new(0.873587489, 0, 0.532324314, 0)
+DarknessPicker.Selectable = false
+DarknessPicker.Size = UDim2.new(0.134624541, 0, 0.357877403, 0)
+DarknessPicker.ZIndex = 2
+DarknessPicker.Image = "http://www.roblox.com/asset/?id=5670478250"
+DarknessPicker.SliceCenter = Rect.new(100, 100, 100, 100)
+DarknessPicker.SliceScale = 0.120
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 0, 0))}
+UIGradient.Rotation = 90
+UIGradient.Parent = DarknessPicker
+
+UIAspectRatioConstraint_2.Parent = DarknessPicker
+UIAspectRatioConstraint_2.AspectRatio = 0.157
+
+Slider.Name = "Slider"
+Slider.Parent = DarknessPicker
+Slider.AnchorPoint = Vector2.new(0.5, 0.5)
+Slider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Slider.BackgroundTransparency = 1.000
+Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Slider.BorderSizePixel = 2
+Slider.Position = UDim2.new(0.491197795, 0, 0.0733607039, 0)
+Slider.Size = UDim2.new(1.28656352, 0, 0.0265010502, 0)
+Slider.ZIndex = 2
+Slider.Image = "rbxassetid://3570695787"
+Slider.ImageColor3 = Color3.fromRGB(255, 85, 255)
+Slider.ScaleType = Enum.ScaleType.Slice
+Slider.SliceCenter = Rect.new(100, 100, 100, 100)
+Slider.SliceScale = 0.120
+
+Outline.Name = "Outline"
+Outline.Parent = Background
+Outline.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Outline.Position = UDim2.new(0, 13, 0, 359)
+Outline.Size = UDim2.new(0, 64, 0, 20)
+Outline.Font = Enum.Font.GothamSemibold
+Outline.Text = "Set Outline Color"
+Outline.TextColor3 = Color3.fromRGB(0, 0, 0)
+Outline.TextScaled = true
+Outline.TextWrapped = true
+
+UICorner_4.CornerRadius = UDim.new(0, 4)
+UICorner_4.Parent = Outline
+
+Body.Name = "Body"
+Body.Parent = Background
+Body.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Body.Position = UDim2.new(0, 156, 0, 359)
+Body.Size = UDim2.new(0, 66, 0, 20)
+Body.Font = Enum.Font.GothamSemibold
+Body.Text = "Set Body Color"
+Body.TextColor3 = Color3.fromRGB(0, 0, 0)
+Body.TextScaled = true
+Body.TextSize = 11.000
+Body.TextWrapped = true
+
+UICorner_5.CornerRadius = UDim.new(0, 4)
+UICorner_5.Parent = Body
+
+TextColor.Name = "TextColor"
+TextColor.Parent = Background
+TextColor.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextColor.Position = UDim2.new(0, 84, 0, 359)
+TextColor.Size = UDim2.new(0, 66, 0, 20)
+TextColor.Font = Enum.Font.GothamSemibold
+TextColor.Text = "Set Text Color"
+TextColor.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextColor.TextScaled = true
+TextColor.TextWrapped = true
+
+UICorner_6.CornerRadius = UDim.new(0, 4)
+UICorner_6.Parent = TextColor
+
+-- Scripts:
+
+local function AQHQZPW_fake_script() -- Background.Drag 
 	local script = Instance.new('LocalScript', Background)
-  script.Name = "GuiDrag"
 
-  local UIS = game:GetService("UserInputService")
-  function dragify(Frame)
-      dragToggle = nil
-      local dragSpeed = 0.25
-      dragInput = nil
-      dragStart = nil
-      local dragPos = nil
-      function updateInput(input)
-          local Delta = input.Position - dragStart
-          local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
-          Frame.Position = Position
-      end
-      Frame.InputBegan:Connect(function(input)
-          if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
-              dragToggle = true
-              dragStart = input.Position
-              startPos = Frame.Position
-              input.Changed:Connect(function()
-                  if input.UserInputState == Enum.UserInputState.End then
-                      dragToggle = false
-                  end
-              end)
-          end
-      end)
-      Frame.InputChanged:Connect(function(input)
-          if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-              dragInput = input
-          end
-      end)
-      game:GetService("UserInputService").InputChanged:Connect(function(input)
-          if input == dragInput and dragToggle then
-              updateInput(input)
-          end
-      end)
-  end
-  dragify(script.Parent)
+	local UIS = game:GetService("UserInputService")
+	function dragify(Frame)
+	    dragToggle = nil
+	    local dragSpeed = 0.25
+	    dragInput = nil
+	    dragStart = nil
+	    local dragPos = nil
+	    function updateInput(input)
+	        local Delta = input.Position - dragStart
+	        local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+	        Frame.Position = Position
+	    end
+	    Frame.InputBegan:Connect(function(input)
+	        if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+	            dragToggle = true
+	            dragStart = input.Position
+	            startPos = Frame.Position
+	            input.Changed:Connect(function()
+	                if input.UserInputState == Enum.UserInputState.End then
+	                    dragToggle = false
+	                end
+	            end)
+	        end
+	    end)
+	    Frame.InputChanged:Connect(function(input)
+	        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+	            dragInput = input
+	        end
+	    end)
+	    game:GetService("UserInputService").InputChanged:Connect(function(input)
+	        if input == dragInput and dragToggle then
+	            updateInput(input)
+	        end
+	    end)
+	end
+	
+	dragify(script.Parent)
 end
-coroutine.wrap(GuiDrag)()
-
-local function GUIToggle()
+coroutine.wrap(AQHQZPW_fake_script)()
+local function XOUKU_fake_script() -- Background.OpenNClose 
 	local script = Instance.new('LocalScript', Background)
-  script.Name = "GuiToggle"
 
 	local gui = script.Parent
 	
@@ -229,27 +351,26 @@ local function GUIToggle()
 	
 	GuiOpen()
 end
-coroutine.wrap(GUIToggle)()
-
-local function MainHandler()
+coroutine.wrap(XOUKU_fake_script)()
+local function JGTNZ_fake_script() -- ChamsMenu.MainHandler 
 	local script = Instance.new('LocalScript', ChamsMenu)
-  script.Name = "MainHandler"
 
 	local gui = script.Parent
+	local colorValue = gui.ColorValue
 	
 	--Settings
 	local settings_table = {
+	    Enabled = false,
 	    outlinecolor = Color3.fromRGB(255, 255, 255),
 	    chamscolor = Color3.fromRGB(207, 66, 0),
-	    textcolor = Color3.fromRGB(255, 255, 255),
+	    textcolor = Color3.fromRGB(184, 108, 190),
 	    teamcolor = true,
 	    names = true
 	}
 	
 	
-	
 	--version
-	local version = '2.1'
+	local version = '2.2'
 	gui.Background.VersionLabel.Text = "Version: "..version
 	
 	--Boring Stuff Below (DO NOT CHANGE ANYTHING BELOW)
@@ -262,7 +383,7 @@ local function MainHandler()
 	local Outline = Instance.new("SelectionBox")
 	Outline.Name = "Yes"
 	Outline.LineThickness = 0.03
-	Outline.Color3 = settings_table.outlinecolor
+	
 	
 	local PartsBox = Instance.new("BoxHandleAdornment")
 	PartsBox.Name = "Yes"
@@ -276,6 +397,7 @@ local function MainHandler()
 	NameTag.Size = UDim2.new(0, 200, 0, 50)
 	NameTag.AlwaysOnTop = true
 	NameTag.StudsOffset = Vector3.new(0, 1.8, 0)
+	
 	local Tag = Instance.new("TextLabel", NameTag)
 	Tag.Name = "Tag"
 	Tag.BackgroundTransparency = 1
@@ -303,6 +425,7 @@ local function MainHandler()
 	                        funny.Name = v.Parent.Name .. "Outline"
 	                        funny.Parent = vHolder
 	                        funny.Adornee = v
+	                        funny.Color3 = settings_table.outlinecolor
 	                        local Box = PartsBox:Clone()
 	                        Box.Name = v.Parent.Name .. "Box"
 	                        Box.Parent = vHolder
@@ -389,7 +512,7 @@ local function MainHandler()
 	
 	end
 	
-	function deleteChams()
+	function delete()
 	    for _,v in next, game.CoreGui:GetChildren() do
 	        if v:FindFirstChildWhichIsA("Folder") then
 	            if v.Name == "ESPFOLDER" then
@@ -400,22 +523,70 @@ local function MainHandler()
 	        end
 	    end
 	end
-
-  function deleteTags()
-    for _,v in next, game.CoreGui:GetChildren() do
-        if v:FindFirstChildWhichIsA("Folder") then
-            if v.Name == "ESPFOLDER" then
-                for i,b in next, v:GetChildren() do
-                    for i,c in next, b:GetChildren() do
-                      if c.ClassName == "BillboardGui" then
-                        c:Destroy()
-                      end
-                    end
-                end
-            end
-        end
-    end
-end
+	
+	function deleteTags()
+	    for _,v in next, game.CoreGui:GetChildren() do
+	        if v:FindFirstChildWhichIsA("Folder") then
+	            if v.Name == "ESPFOLDER" then
+	                for i,b in next, v:GetChildren() do
+	                    for i,c in next, b:GetChildren() do
+	                        if c.ClassName == "BillboardGui" then
+	                            c:Destroy()
+	                        end
+	                    end
+	                end
+	            end
+	        end
+	    end
+	end
+	
+	function deleteOutlines()
+	    for _,v in next, game.CoreGui:GetChildren() do
+	        if v:FindFirstChildWhichIsA("Folder") then
+	            if v.Name == "ESPFOLDER" then
+	                for i,b in next, v:GetChildren() do
+	                    for i,c in next, b:GetChildren() do
+	                        if c.ClassName == "SelectionBox" then
+	                            c:Destroy()
+	                        end
+	                    end
+	                end
+	            end
+	        end
+	    end
+	end
+	
+	function deleteBoxes()
+	    for _,v in next, game.CoreGui:GetChildren() do
+	        if v:FindFirstChildWhichIsA("Folder") then
+	            if v.Name == "ESPFOLDER" then
+	                for i,b in next, v:GetChildren() do
+	                    for i,c in next, b:GetChildren() do
+	                        if c.ClassName == "BoxHandleAdornment" then
+	                            c:Destroy()
+	                        end
+	                    end
+	                end
+	            end
+	        end
+	    end
+	end
+	
+	function deleteText()
+	    for _,v in next, game.CoreGui:GetChildren() do
+	        if v:FindFirstChildWhichIsA("Folder") then
+	            if v.Name == "ESPFOLDER" then
+	                for i,b in next, v:GetChildren() do
+	                    for i,c in next, b:GetChildren() do
+	                        if c.ClassName == "BillboardGui" then
+	                            c:Destroy()
+	                        end
+	                    end
+	                end
+	            end
+	        end
+	    end
+	end
 	
 	toggle1 = false
 	
@@ -426,10 +597,12 @@ end
 	        toggle1 = true
 	    end
 	    if toggle1 == true then 
+	        settings_table.Enabled = true
 	        gui.Background.Enable.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
 	        gui.Background.Enable.TextLabel.Text = "Chams Enabled"
 	    end
 	    if toggle1 == false then 
+	        settings_table.Enabled = false
 	        gui.Background.Enable.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 	        gui.Background.Enable.TextLabel.Text = "Chams Disabled"
 	    end
@@ -438,7 +611,7 @@ end
 	        chams()
 	    end
 	    if toggle1 == false then 
-          deleteChams()
+	        delete()
 	    end
 	end)
 	
@@ -451,27 +624,35 @@ end
 	        toggle2 = true
 	    end
 	    if toggle2 == true then 
+	        if settings_table.Enabled == true then
 	        gui.Background.Names.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
 	        gui.Background.Names.TextLabel.Text = "Names Enabled"
+	        end
 	    end
-	    if toggle2 == false then 
+	    if toggle2 == false then
+	        if settings_table.Enabled == true then
 	        gui.Background.Names.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 	        gui.Background.Names.TextLabel.Text = "Names Disabled"
+	        end
 	    end
 	
 	    if toggle2 == true then
 	        --true
+	        if settings_table.Enabled == true then
 	        deleteTags()
 	        settings_table.names = true
-	        task.wait(0)
+	        task.wait()
 	        chams()
+	        end
 	    end
 	    if toggle2 == false then 
 	        --false
+	        if settings_table.Enabled == true then
 	        deleteTags()
 	        settings_table.names = false
-	        task.wait(0)
+	        task.wait()
 	        chams()
+	        end
 	    end
 	end)
 	
@@ -482,29 +663,176 @@ end
 	    else
 	        toggle2 = true
 	    end
-	    if toggle2 == true then 
+	    if toggle2 == true then
+	        if settings_table.Enabled == true then
 	        gui.Background.TeamColor.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
 	        gui.Background.TeamColor.TextLabel.Text = "Team Color Enabled"
+	        end
 	    end
-	    if toggle2 == false then 
+	    if toggle2 == false then
+	        if settings_table.Enabled == true then    
 	        gui.Background.TeamColor.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 	        gui.Background.TeamColor.TextLabel.Text = "Team Color Disabled"
+	        end
 	    end
 	
 	    if toggle2 == true then
-	        --true
-	        deleteChams()
+	        if settings_table.Enabled == true then
+	        delete()
 	        settings_table.teamcolor = true
-	        task.wait(0)
+	        task.wait()
 	        chams()
+	        end
 	    end
 	    if toggle2 == false then 
-	        --false
-	        deleteChams()
+	        if settings_table.Enabled == true then
+	        delete()
 	        settings_table.teamcolor = false
-	        task.wait(0)
+	        task.wait()
 	        chams()
+	        end
+	    end
+	end)
+	
+	gui.Background.Outline.MouseButton1Click:Connect(function()
+	    local Rc = colorValue.Value.R
+	    local Gc = colorValue.Value.G
+	    local Bc = colorValue.Value.B
+	
+	    local r, g, b = math.round(Rc*255), math.round(Gc*255), math.round(Bc*255)
+	    
+	    if settings_table.Enabled == true then
+	    settings_table.outlinecolor = Color3.fromRGB(r,g,b)
+	    deleteOutlines()
+	    task.wait()
+	    chams()
+	    end
+	end)
+	
+	gui.Background.Body.MouseButton1Click:Connect(function()
+	    local Rc = colorValue.Value.R
+	    local Gc = colorValue.Value.G
+	    local Bc = colorValue.Value.B
+	
+	    local r, g, b = math.round(Rc*255), math.round(Gc*255), math.round(Bc*255)
+	    
+	    if settings_table.Enabled == true then
+	    settings_table.chamscolor = Color3.fromRGB(r,g,b)
+	    deleteBoxes()
+	    task.wait()
+	    chams()
+	    end
+	    
+	end)
+	
+	gui.Background.TextColor.MouseButton1Click:Connect(function()
+	    local Rc = colorValue.Value.R
+	    local Gc = colorValue.Value.G
+	    local Bc = colorValue.Value.B
+	
+	    local r, g, b = math.round(Rc*255), math.round(Gc*255), math.round(Bc*255)
+	    if settings_table.Enabled == true then
+	    settings_table.textcolor = Color3.fromRGB(r,g,b)
+	    deleteText()
+	    task.wait()
+	    chams()
 	    end
 	end)
 end
-coroutine.wrap(MainHandler)()
+coroutine.wrap(JGTNZ_fake_script)()
+local function THEVCTH_fake_script() -- ChamsMenu.ColourWheelHandler 
+	local script = Instance.new('LocalScript', ChamsMenu)
+
+	local gui = script.Parent.Background
+	
+	local colourWheel = gui.ColourWheel
+	local wheelPicker = colourWheel:WaitForChild("Picker")
+	
+	local darknessPicker = gui.DarknessPicker
+	local darknessSlider = darknessPicker.Slider
+	
+	local colourDisplay = script.Parent.ColorValue
+	
+	
+	local uis = game:GetService("UserInputService")
+	
+	
+	local buttonDown = false
+	local movingSlider = false
+	
+	
+	local function updateColour(centreOfWheel)
+		
+		
+		local colourPickerCentre = Vector2.new(
+			colourWheel.Picker.AbsolutePosition.X + (colourWheel.Picker.AbsoluteSize.X/2),
+			colourWheel.Picker.AbsolutePosition.Y + (colourWheel.Picker.AbsoluteSize.Y/2)
+		)
+		local h = (math.pi - math.atan2(colourPickerCentre.Y - centreOfWheel.Y, colourPickerCentre.X - centreOfWheel.X)) / (math.pi * 2)
+		
+		local s = (centreOfWheel - colourPickerCentre).Magnitude / (colourWheel.AbsoluteSize.X/2)
+		
+		local v = math.abs((darknessSlider.AbsolutePosition.Y - darknessPicker.AbsolutePosition.Y) / darknessPicker.AbsoluteSize.Y - 1)
+		
+		
+		local hsv = Color3.fromHSV(math.clamp(h, 0, 1), math.clamp(s, 0, 1), math.clamp(v, 0, 1))
+		
+		
+	    colourDisplay.Value = hsv
+		darknessPicker.UIGradient.Color = ColorSequence.new{
+			ColorSequenceKeypoint.new(0, hsv), 
+			ColorSequenceKeypoint.new(1, Color3.new(0, 0, 0))
+		}
+	end
+	
+	
+	colourWheel.MouseButton1Down:Connect(function()
+		buttonDown = true
+	end)
+	
+	darknessPicker.MouseButton1Down:Connect(function()
+		movingSlider = true
+	end)
+	
+	
+	uis.InputEnded:Connect(function(input)
+		
+		if input.UserInputType ~= Enum.UserInputType.MouseButton1 then return end
+		
+		buttonDown = false
+		movingSlider = false
+	end)
+	
+	
+	uis.InputChanged:Connect(function(input)
+		
+		if input.UserInputType ~= Enum.UserInputType.MouseMovement then return end
+		
+		
+		local mousePos = uis:GetMouseLocation() - Vector2.new(0, game:GetService("GuiService"):GetGuiInset().Y)
+		
+		local centreOfWheel = Vector2.new(colourWheel.AbsolutePosition.X + (colourWheel.AbsoluteSize.X/2), colourWheel.AbsolutePosition.Y + (colourWheel.AbsoluteSize.Y/2))
+		
+		local distanceFromWheel = (mousePos - centreOfWheel).Magnitude
+		
+		
+		if distanceFromWheel <= colourWheel.AbsoluteSize.X/2 and buttonDown then
+			
+			wheelPicker.Position = UDim2.new(0, mousePos.X - colourWheel.AbsolutePosition.X, 0, mousePos.Y - colourWheel.AbsolutePosition.Y)
+	
+			
+		elseif movingSlider then
+			
+			darknessSlider.Position = UDim2.new(darknessSlider.Position.X.Scale, 0, 0, 
+				math.clamp(
+				mousePos.Y - darknessPicker.AbsolutePosition.Y, 
+				0, 
+				darknessPicker.AbsoluteSize.Y)
+			)	
+		end
+		
+		
+		updateColour(centreOfWheel)
+	end)
+end
+coroutine.wrap(THEVCTH_fake_script)()
