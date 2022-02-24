@@ -42,7 +42,7 @@ local Color3Value = Instance.new("Color3Value")
 --Properties:
 
 ChamsMenu.Name = "ChamsMenu"
-ChamsMenu.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ChamsMenu.Parent = game.CoreGui
 ChamsMenu.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Background.Name = "Background"
