@@ -504,10 +504,14 @@ local function JGTNZ_fake_script() -- ChamsMenu.MainHandler
 	        task.spawn(function() pcall(LoadPlayer, v) end)
 	    end
 	    game:GetService("Players").PlayerAdded:Connect(function(v)
-	        pcall(LoadPlayer, v)
+			v.CharacterAdded:Connect(function(v)
+					pcall(LoadPlayer, v)
+				end)
 	    end)
 	    game:GetService("Players").PlayerRemoving:Connect(function(v)
-	        pcall(UnloadPlayer, v)
+				v.CharacterRemoving:Connect(function(v)
+					pcall(UnloadPlayer, v)
+				end)
 	    end)
 	
 	end
@@ -664,16 +668,12 @@ local function JGTNZ_fake_script() -- ChamsMenu.MainHandler
 	        toggle2 = true
 	    end
 	    if toggle2 == true then
-	        if settings_table.Enabled == true then
 	        gui.Background.TeamColor.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
 	        gui.Background.TeamColor.TextLabel.Text = "Team Color Enabled"
-	        end
 	    end
-	    if toggle2 == false then
-	        if settings_table.Enabled == true then    
+	    if toggle2 == false then   
 	        gui.Background.TeamColor.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 	        gui.Background.TeamColor.TextLabel.Text = "Team Color Disabled"
-	        end
 	    end
 	
 	    if toggle2 == true then
