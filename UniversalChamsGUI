@@ -1,0 +1,490 @@
+--[[
+ ▄████▄   ██░ ██  ██▓ ██▓     ██▓     ██▓ ███▄    █     ▄▄▄       ██ ▄█▀▄▄▄          ███▄ ▄███▓ ▄▄▄       ▄████▄  
+▒██▀ ▀█  ▓██░ ██▒▓██▒▓██▒    ▓██▒    ▓██▒ ██ ▀█   █    ▒████▄     ██▄█▒▒████▄       ▓██▒▀█▀ ██▒▒████▄    ▒██▀ ▀█  
+▒▓█    ▄ ▒██▀▀██░▒██▒▒██░    ▒██░    ▒██▒▓██  ▀█ ██▒   ▒██  ▀█▄  ▓███▄░▒██  ▀█▄     ▓██    ▓██░▒██  ▀█▄  ▒▓█    ▄ 
+▒▓▓▄ ▄██▒░▓█ ░██ ░██░▒██░    ▒██░    ░██░▓██▒  ▐▌██▒   ░██▄▄▄▄██ ▓██ █▄░██▄▄▄▄██    ▒██    ▒██ ░██▄▄▄▄██ ▒▓▓▄ ▄██▒
+▒ ▓███▀ ░░▓█▒░██▓░██░░██████▒░██████▒░██░▒██░   ▓██░    ▓█   ▓██▒▒██▒ █▄▓█   ▓██▒   ▒██▒   ░██▒ ▓█   ▓██▒▒ ▓███▀ ░ https://discord.gg/fCvAWtFBFh
+░ ░▒ ▒  ░ ▒ ░░▒░▒░▓  ░ ▒░▓  ░░ ▒░▓  ░░▓  ░ ▒░   ▒ ▒     ▒▒   ▓▒█░▒ ▒▒ ▓▒▒▒   ▓▒█░   ░ ▒░   ░  ░ ▒▒   ▓▒█░░ ░▒ ▒  ░
+  ░  ▒    ▒ ░▒░ ░ ▒ ░░ ░ ▒  ░░ ░ ▒  ░ ▒ ░░ ░░   ░ ▒░     ▒   ▒▒ ░░ ░▒ ▒░ ▒   ▒▒ ░   ░  ░      ░  ▒   ▒▒ ░  ░  ▒   
+░         ░  ░░ ░ ▒ ░  ░ ░     ░ ░    ▒ ░   ░   ░ ░      ░   ▒   ░ ░░ ░  ░   ▒      ░      ░     ░   ▒   ░        
+░ ░       ░  ░  ░ ░      ░  ░    ░  ░ ░           ░          ░  ░░  ░        ░  ░          ░         ░  ░░ ░      
+░                                                                                                        ░        
+]]
+
+local ChamsMenu = Instance.new("ScreenGui")
+local Background = Instance.new("Frame")
+local Title = Instance.new("Frame")
+local Bar = Instance.new("Frame")
+local VersionLabel = Instance.new("TextLabel")
+local NameLabel = Instance.new("TextLabel")
+local TeamColor = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
+local TextLabel = Instance.new("TextLabel")
+local Names = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local TextLabel_2 = Instance.new("TextLabel")
+local Enable = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local TextLabel_3 = Instance.new("TextLabel")
+local VersionLabel_2 = Instance.new("TextLabel")
+
+ChamsMenu.Name = "ChamsMenu"
+ChamsMenu.Parent = game.CoreGui
+ChamsMenu.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Background.Name = "Background"
+Background.Parent = ChamsMenu
+Background.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Background.BackgroundTransparency = 0.650
+Background.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Background.BorderSizePixel = 2
+Background.Position = UDim2.new(0.00874999911, 0, 0.12291351, 0)
+Background.Size = UDim2.new(0, 234, 0, 497)
+
+Title.Name = "Title"
+Title.Parent = Background
+Title.BackgroundColor3 = Color3.fromRGB(64, 64, 64)
+Title.BorderSizePixel = 0
+Title.Size = UDim2.new(0, 234, 0, 59)
+
+Bar.Name = "Bar"
+Bar.Parent = Title
+Bar.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+Bar.BorderSizePixel = 0
+Bar.Size = UDim2.new(0, 234, 0, 17)
+
+VersionLabel.Name = "VersionLabel"
+VersionLabel.Parent = Title
+VersionLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+VersionLabel.BackgroundTransparency = 1.000
+VersionLabel.BorderSizePixel = 0
+VersionLabel.Position = UDim2.new(0.641025662, 0, 0.711864412, 0)
+VersionLabel.Size = UDim2.new(0, 84, 0, 16)
+VersionLabel.Font = Enum.Font.Ubuntu
+VersionLabel.Text = "by Macintosh"
+VersionLabel.TextColor3 = Color3.fromRGB(172, 172, 172)
+VersionLabel.TextSize = 14.000
+
+NameLabel.Name = "NameLabel"
+NameLabel.Parent = Title
+NameLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NameLabel.BackgroundTransparency = 1.000
+NameLabel.Position = UDim2.new(0, 0, 0, 16)
+NameLabel.Size = UDim2.new(0, 150, 0, 41)
+NameLabel.Font = Enum.Font.Ubuntu
+NameLabel.Text = "Universal Chams"
+NameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+NameLabel.TextSize = 19.000
+NameLabel.TextStrokeTransparency = 0.000
+NameLabel.TextWrapped = true
+
+TeamColor.Name = "TeamColor"
+TeamColor.Parent = Background
+TeamColor.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+TeamColor.Position = UDim2.new(0, 10, 0, 95)
+TeamColor.Size = UDim2.new(0, 20, 0, 20)
+TeamColor.Font = Enum.Font.SourceSans
+TeamColor.Text = ""
+TeamColor.TextColor3 = Color3.fromRGB(0, 0, 0)
+TeamColor.TextSize = 14.000
+
+UICorner.CornerRadius = UDim.new(0, 200)
+UICorner.Parent = TeamColor
+
+TextLabel.Parent = TeamColor
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Position = UDim2.new(1.20000005, 0, 0, 0)
+TextLabel.Size = UDim2.new(0, 139, 0, 20)
+TextLabel.Font = Enum.Font.GothamSemibold
+TextLabel.Text = "Team Color Enabled"
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextSize = 14.000
+TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+Names.Name = "Names"
+Names.Parent = Background
+Names.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+Names.Position = UDim2.new(0, 10, 0, 123)
+Names.Size = UDim2.new(0, 20, 0, 20)
+Names.Font = Enum.Font.SourceSans
+Names.Text = ""
+Names.TextColor3 = Color3.fromRGB(0, 0, 0)
+Names.TextSize = 14.000
+
+UICorner_2.CornerRadius = UDim.new(0, 200)
+UICorner_2.Parent = Names
+
+TextLabel_2.Parent = Names
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.Position = UDim2.new(1.20000005, 0, 0, 0)
+TextLabel_2.Size = UDim2.new(0, 98, 0, 20)
+TextLabel_2.Font = Enum.Font.GothamSemibold
+TextLabel_2.Text = "Names Enabled"
+TextLabel_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_2.TextSize = 14.000
+TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
+
+Enable.Name = "Enable"
+Enable.Parent = Background
+Enable.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Enable.Position = UDim2.new(0, 10, 0, 67)
+Enable.Size = UDim2.new(0, 20, 0, 20)
+Enable.Font = Enum.Font.SourceSans
+Enable.Text = ""
+Enable.TextColor3 = Color3.fromRGB(0, 0, 0)
+Enable.TextSize = 14.000
+
+UICorner_3.CornerRadius = UDim.new(0, 200)
+UICorner_3.Parent = Enable
+
+TextLabel_3.Parent = Enable
+TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.BackgroundTransparency = 1.000
+TextLabel_3.Position = UDim2.new(1.20000005, 0, 0, 0)
+TextLabel_3.Size = UDim2.new(0, 98, 0, 20)
+TextLabel_3.Font = Enum.Font.GothamSemibold
+TextLabel_3.Text = "Chams Disabled"
+TextLabel_3.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_3.TextSize = 14.000
+TextLabel_3.TextXAlignment = Enum.TextXAlignment.Left
+
+VersionLabel_2.Name = "VersionLabel"
+VersionLabel_2.Parent = Background
+VersionLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+VersionLabel_2.BackgroundTransparency = 1.000
+VersionLabel_2.Position = UDim2.new(0.012820513, 0, 0.957746506, 0)
+VersionLabel_2.Size = UDim2.new(0, 81, 0, 21)
+VersionLabel_2.Font = Enum.Font.SciFi
+VersionLabel_2.Text = "Version: Nil"
+VersionLabel_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+VersionLabel_2.TextSize = 14.000
+VersionLabel_2.TextTransparency = 0.770
+VersionLabel_2.TextXAlignment = Enum.TextXAlignment.Left
+
+
+local function PZBKAQJ_fake_script() -- Background.Drag 
+	local script = Instance.new('LocalScript', Background)
+
+  local UIS = game:GetService("UserInputService")
+  function dragify(Frame)
+      dragToggle = nil
+      local dragSpeed = 0.25
+      dragInput = nil
+      dragStart = nil
+      local dragPos = nil
+      function updateInput(input)
+          local Delta = input.Position - dragStart
+          local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+          Frame.Position = Position
+      end
+      Frame.InputBegan:Connect(function(input)
+          if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+              dragToggle = true
+              dragStart = input.Position
+              startPos = Frame.Position
+              input.Changed:Connect(function()
+                  if input.UserInputState == Enum.UserInputState.End then
+                      dragToggle = false
+                  end
+              end)
+          end
+      end)
+      Frame.InputChanged:Connect(function(input)
+          if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+              dragInput = input
+          end
+      end)
+      game:GetService("UserInputService").InputChanged:Connect(function(input)
+          if input == dragInput and dragToggle then
+              updateInput(input)
+          end
+      end)
+  end
+  dragify(script.Parent)
+end
+coroutine.wrap(PZBKAQJ_fake_script)()
+local function JSIJHQX_fake_script() -- Background.OpenNClose 
+	local script = Instance.new('LocalScript', Background)
+
+	local gui = script.Parent
+	
+	
+	function GuiOpen()
+	    local open = true
+	    game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessedEvent)
+	        if input.KeyCode == Enum.KeyCode.F2
+	            and open == true then
+	            open = false
+	            gui.Visible = false
+	        elseif open == false and input.KeyCode == Enum.KeyCode.F2 then
+	            open = true
+	            gui.Visible = true
+	        end
+	    end)
+	end
+	
+	GuiOpen()
+end
+coroutine.wrap(JSIJHQX_fake_script)()
+local function VUWEORW_fake_script() -- ChamsMenu.MainHandler 
+	local script = Instance.new('LocalScript', ChamsMenu)
+
+	local gui = script.Parent
+	
+	--Settings
+	local settings_table = {
+	    outlinecolor = Color3.fromRGB(255, 255, 255),
+	    chamscolor = Color3.fromRGB(207, 66, 0),
+	    textcolor = Color3.fromRGB(184, 108, 190),
+	    teamcolor = true,
+	    names = true
+	}
+	
+	
+	
+	--version
+	local version = '2.0'
+	gui.Background.VersionLabel.Text = "Version: "..version
+	
+	--Boring Stuff Below (DO NOT CHANGE ANYTHING BELOW)
+	local ESPFOLDER = Instance.new('Folder', game.CoreGui)
+	ESPFOLDER.Name = 'ESPFOLDER'
+	
+	local people = game:GetService("Players")
+	local self = people.LocalPlayer
+	
+	local Outline = Instance.new("SelectionBox")
+	Outline.Name = "Yes"
+	Outline.LineThickness = 0.03
+	Outline.Color3 = settings_table.outlinecolor
+	
+	local PartsBox = Instance.new("BoxHandleAdornment")
+	PartsBox.Name = "Yes"
+	PartsBox.AlwaysOnTop = true
+	PartsBox.Transparency = .4
+	PartsBox.ZIndex = 0
+	
+	local NameTag = Instance.new("BillboardGui")
+	NameTag.Name = "nilNameTag"
+	NameTag.Enabled = false
+	NameTag.Size = UDim2.new(0, 200, 0, 50)
+	NameTag.AlwaysOnTop = true
+	NameTag.StudsOffset = Vector3.new(0, 1.8, 0)
+	local Tag = Instance.new("TextLabel", NameTag)
+	Tag.Name = "Tag"
+	Tag.BackgroundTransparency = 1
+	Tag.Position = UDim2.new(0, -50, 0, 0)
+	Tag.Size = UDim2.new(0, 300, 0, 20)
+	Tag.TextSize = 14
+	Tag.TextStrokeTransparency = 0.440
+	Tag.Text = "nil"
+	Tag.Font = Enum.Font.GothamSemibold
+	Tag.TextScaled = false
+	
+	local LoadCharacter = function(v)
+	    for i,v in next, people:GetPlayers() do
+	        if v.Name ~= self.Name then
+	            local Tcolor = Color3.new(v.TeamColor.r, v.TeamColor.g, v.TeamColor.b)
+	            local char = v.Character or v.CharacterAdded:Wait()
+	            local vHolder = ESPFOLDER:FindFirstChild(v.Name)
+	            vHolder:ClearAllChildren()
+	            if char:FindFirstChild("HumanoidRootPart") and
+	                char:FindFirstChild("Humanoid") and
+	                char:FindFirstChild("Humanoid").Health ~= 0 then
+	                for i,v in next, char:GetChildren() do
+	                    if v.ClassName == "Part" or v.ClassName == "MeshPart" and v.Transparency ~= 1 then
+	                        local funny = Outline:Clone()
+	                        funny.Name = v.Parent.Name .. "Outline"
+	                        funny.Parent = vHolder
+	                        funny.Adornee = v
+	                        local Box = PartsBox:Clone()
+	                        Box.Name = v.Parent.Name .. "Box"
+	                        Box.Parent = vHolder
+	                        Box.Adornee = v
+	                        Box.Size = v.size
+	                        if settings_table.teamcolor == true then 
+	                            Box.Color3 = Tcolor
+	                        else if settings_table.teamcolor == false then 
+	                                Box.Color3 = settings_table.chamscolor
+	                            end
+	                        end
+	                        local Name = NameTag:Clone()
+	                        Name.Name = v.Parent.Name .. "NameTag"
+	                        if settings_table.names == true then
+	                            Name.Enabled = true
+	                        else if settings_table.names == false then
+	                                Name.Enabled = false
+	                            end
+	                        end
+	                        Name.Parent = vHolder
+	                        Name.Adornee = char.Head
+	                        if not Name.Adornee then
+	                            return UnloadCharacter(v)
+	                        end
+	                        Name.Tag.Text = char.Humanoid.Parent.Name
+	                        if settings_table.teamcolor == true then 
+	                            Name.Tag.TextColor3 = Tcolor
+	                        else if settings_table.teamcolor == false then 
+	                                Name.Tag.TextColor3 = settings_table.textcolor
+	                            end
+	                        end
+	                    end
+	                end
+	            end
+	        end
+	    end
+	end
+	
+	local UnloadCharacter = function(v)
+	    local vHolder = ESPFOLDER:FindFirstChild(v.Name)
+	    if vHolder and (vHolder:FindFirstChild(v.Parent.Name .. "Box") ~= nil or vHolder:FindFirstChild(v.Parent.Name .. "NameTag") ~= nil) or vHolder:FindFirstChild(v.Parent.Name .. "Outline") then
+	        vHolder:ClearAllChildren()
+	    end
+	end
+	
+	local LoadPlayer = function(v)
+	    local vHolder = Instance.new("Folder", ESPFOLDER)
+	    vHolder.Name = v.Name
+	    v.CharacterAdded:Connect(function()
+	        pcall(LoadCharacter, v)
+	    end)
+	    v.CharacterRemoving:Connect(function()
+	        pcall(UnloadCharacter, v)
+	    end)
+	    v.Changed:Connect(function(prop)
+	        if prop == "TeamColor" then
+	            UnloadCharacter(v)
+	            task.wait()
+	            LoadCharacter(v)
+	        end
+	    end)
+	    LoadCharacter(v)
+	end
+	
+	local UnloadPlayer = function(v)
+	    UnloadCharacter(v)
+	    local vHolder = ESPFOLDER:FindFirstChild(v.Name)
+	    if vHolder then
+	        vHolder:Destroy()
+	    end
+	end
+	
+	function chams()
+	
+	    for i,v in next, game:GetService("Players"):GetPlayers() do
+	        task.spawn(function() pcall(LoadPlayer, v) end)
+	    end
+	    game:GetService("Players").PlayerAdded:Connect(function(v)
+	        pcall(LoadPlayer, v)
+	    end)
+	    game:GetService("Players").PlayerRemoving:Connect(function(v)
+	        pcall(UnloadPlayer, v)
+	    end)
+	
+	end
+	
+	function delete()
+	    for _,v in next, game.CoreGui:GetChildren() do
+	        if v:FindFirstChildWhichIsA("Folder") then
+	            if v.Name == "ESPFOLDER" then
+	                for i,b in next, v:GetChildren() do
+	                    b:Destroy()
+	                end
+	            end
+	        end
+	    end
+	end
+	
+	toggle1 = false
+	
+	gui.Background.Enable.MouseButton1Click:Connect(function()
+	    if toggle1 == true then 
+	        toggle1 = false 
+	    else
+	        toggle1 = true
+	    end
+	    if toggle1 == true then 
+	        gui.Background.Enable.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+	        gui.Background.Enable.TextLabel.Text = "Chams Enabled"
+	    end
+	    if toggle1 == false then 
+	        gui.Background.Enable.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+	        gui.Background.Enable.TextLabel.Text = "Chams Disabled"
+	    end
+	
+	    if toggle1 == true then
+	        chams()
+	    end
+	    if toggle1 == false then 
+	        delete()
+	    end
+	end)
+	
+	toggle2 = true
+	
+	gui.Background.Names.MouseButton1Click:Connect(function()
+	    if toggle2 == true then 
+	        toggle2 = false 
+	    else
+	        toggle2 = true
+	    end
+	    if toggle2 == true then 
+	        gui.Background.Names.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+	        gui.Background.Names.TextLabel.Text = "Names Enabled"
+	    end
+	    if toggle2 == false then 
+	        gui.Background.Names.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+	        gui.Background.Names.TextLabel.Text = "Names Disabled"
+	    end
+	
+	    if toggle2 == true then
+	        --true
+	        delete()
+	        settings_table.names = true
+	        wait(0)
+	        chams()
+	    end
+	    if toggle2 == false then 
+	        --false
+	        delete()
+	        settings_table.names = false
+	        wait(0)
+	        chams()
+	    end
+	end)
+	
+	
+	gui.Background.TeamColor.MouseButton1Click:Connect(function()
+	    if toggle2 == true then 
+	        toggle2 = false 
+	    else
+	        toggle2 = true
+	    end
+	    if toggle2 == true then 
+	        gui.Background.TeamColor.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+	        gui.Background.TeamColor.TextLabel.Text = "Team Color Enabled"
+	    end
+	    if toggle2 == false then 
+	        gui.Background.TeamColor.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+	        gui.Background.TeamColor.TextLabel.Text = "Team Color Disabled"
+	    end
+	
+	    if toggle2 == true then
+	        --true
+	        delete()
+	        settings_table.teamcolor = true
+	        wait(0)
+	        chams()
+	    end
+	    if toggle2 == false then 
+	        --false
+	        delete()
+	        settings_table.teamcolor = false
+	        wait(0)
+	        chams()
+	    end
+	end)
+end
+coroutine.wrap(VUWEORW_fake_script)()
