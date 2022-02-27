@@ -5,7 +5,7 @@
  | |  | | '_ \| \ \ / / _ \ '__/ __|/ _` | | | |    | '_ \ / _` | '_ ` _ \/ __|
  | |__| | | | | |\ V /  __/ |  \__ \ (_| | | | |____| | | | (_| | | | | | \__ \
   \____/|_| |_|_| \_/ \___|_|  |___/\__,_|_|  \_____|_| |_|\__,_|_| |_| |_|___/
-   Made by Chillin aka mac! It aint the best but it works pretty good                                                                                                                                                     
+   Made by Chillin aka mac!                                                                                                                                                      
 ]]
 
 local ChamsMenu = Instance.new("ScreenGui")
@@ -370,7 +370,7 @@ local function JGTNZ_fake_script() -- ChamsMenu.MainHandler
 	
 	
 	--version
-	local version = '2.2'
+	local version = '2.3'
 	gui.Background.VersionLabel.Text = "Version: "..version
 	
 	--Boring Stuff Below (DO NOT CHANGE ANYTHING BELOW)
@@ -504,14 +504,10 @@ local function JGTNZ_fake_script() -- ChamsMenu.MainHandler
 	        task.spawn(function() pcall(LoadPlayer, v) end)
 	    end
 	    game:GetService("Players").PlayerAdded:Connect(function(v)
-			v.CharacterAdded:Connect(function(v)
-					pcall(LoadPlayer, v)
-				end)
+	        pcall(LoadPlayer, v)
 	    end)
 	    game:GetService("Players").PlayerRemoving:Connect(function(v)
-				v.CharacterRemoving:Connect(function(v)
-					pcall(UnloadPlayer, v)
-				end)
+	        pcall(UnloadPlayer, v)
 	    end)
 	
 	end
@@ -668,12 +664,16 @@ local function JGTNZ_fake_script() -- ChamsMenu.MainHandler
 	        toggle2 = true
 	    end
 	    if toggle2 == true then
+	        if settings_table.Enabled == true then
 	        gui.Background.TeamColor.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
 	        gui.Background.TeamColor.TextLabel.Text = "Team Color Enabled"
+	        end
 	    end
-	    if toggle2 == false then   
+	    if toggle2 == false then
+	        if settings_table.Enabled == true then    
 	        gui.Background.TeamColor.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 	        gui.Background.TeamColor.TextLabel.Text = "Team Color Disabled"
+	        end
 	    end
 	
 	    if toggle2 == true then
