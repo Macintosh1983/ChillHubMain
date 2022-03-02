@@ -474,12 +474,15 @@ local function JGTNZ_fake_script() -- ChamsMenu.MainHandler
 	local LoadPlayer = function(v)
 	    local vHolder = Instance.new("Folder", ESPFOLDER)
 	    vHolder.Name = v.Name
+
 	    v.CharacterAdded:Connect(function()
 	        pcall(LoadCharacter, v)
 	    end)
+
 	    v.CharacterRemoving:Connect(function()
 	        pcall(UnloadCharacter, v)
 	    end)
+
 	    v.Changed:Connect(function(prop)
 	        if prop == "TeamColor" then
 	            UnloadCharacter(v)
@@ -504,10 +507,14 @@ local function JGTNZ_fake_script() -- ChamsMenu.MainHandler
 	        task.spawn(function() pcall(LoadPlayer, v) end)
 	    end
 	    game:GetService("Players").PlayerAdded:Connect(function(v)
+				v.CharacterAdded:Connect(function()
 	        pcall(LoadPlayer, v)
+				end)
 	    end)
 	    game:GetService("Players").PlayerRemoving:Connect(function(v)
+				v.CharacterRemoving:Connect(function()
 	        pcall(UnloadPlayer, v)
+				end)
 	    end)
 	
 	end
