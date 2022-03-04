@@ -421,28 +421,32 @@ local function JGTNZ_fake_script() -- ChamsMenu.MainHandler
 	                char:FindFirstChild("Humanoid").Health ~= 0 then
 	                for i,v in next, char:GetChildren() do
 	                    if v.ClassName == "Part" or v.ClassName == "MeshPart" and v.Transparency ~= 1 then
+
 	                        local funny = Outline:Clone()
 	                        funny.Name = v.Parent.Name .. "Outline"
 	                        funny.Parent = vHolder
 	                        funny.Adornee = v
 	                        funny.Color3 = settings_table.outlinecolor
+
 	                        local Box = PartsBox:Clone()
 	                        Box.Name = v.Parent.Name .. "Box"
 	                        Box.Parent = vHolder
 	                        Box.Adornee = v
 	                        Box.Size = v.size
+
 	                        if settings_table.teamcolor == true then 
 	                            Box.Color3 = Tcolor
 	                        else if settings_table.teamcolor == false then 
-	                                Box.Color3 = settings_table.chamscolor
+	                            Box.Color3 = settings_table.chamscolor
 	                            end
 	                        end
+
 	                        local Name = NameTag:Clone()
 	                        Name.Name = v.Parent.Name .. "NameTag"
 	                        if settings_table.names == true then
-	                            Name.Enabled = true
+	                          Name.Enabled = true
 	                        else if settings_table.names == false then
-	                                Name.Enabled = false
+	                          Name.Enabled = false
 	                            end
 	                        end
 	                        Name.Parent = vHolder
@@ -452,9 +456,11 @@ local function JGTNZ_fake_script() -- ChamsMenu.MainHandler
 	                        end
 	                        Name.Tag.Text = char.Humanoid.Parent.Name
 	                        if settings_table.teamcolor == true then 
-	                            Name.Tag.TextColor3 = Tcolor
+	                          Name.Tag.TextColor3 = Tcolor
 	                        else if settings_table.teamcolor == false then 
-	                                Name.Tag.TextColor3 = settings_table.textcolor
+	                          Name.Tag.TextColor3 = settings_table.textcolor
+
+                            
 	                            end
 	                        end
 	                    end
@@ -483,13 +489,6 @@ local function JGTNZ_fake_script() -- ChamsMenu.MainHandler
 	        pcall(UnloadCharacter, v)
 	    end)
 
-	    v.Changed:Connect(function(prop)
-	        if prop == "TeamColor" then
-	            UnloadCharacter(v)
-	            task.wait()
-	            LoadCharacter(v)
-	        end
-	    end)
 	    LoadCharacter(v)
 	end
 	
@@ -504,13 +503,16 @@ local function JGTNZ_fake_script() -- ChamsMenu.MainHandler
 	function chams()
 	
 	    for i,v in next, game:GetService("Players"):GetPlayers() do
-	        task.spawn(function() pcall(LoadPlayer, v) end)
+	        task.spawn(function() pcall(LoadPlayer, v) 
+          end)
 	    end
+
 	    game:GetService("Players").PlayerAdded:Connect(function(v)
 				v.CharacterAdded:Connect(function()
 	        pcall(LoadPlayer, v)
 				end)
 	    end)
+
 	    game:GetService("Players").PlayerRemoving:Connect(function(v)
 				v.CharacterRemoving:Connect(function()
 	        pcall(UnloadPlayer, v)
