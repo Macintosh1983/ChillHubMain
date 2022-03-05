@@ -8,6 +8,13 @@
    Made by Chillin aka mac!                                                                                                                                                      
 ]]
 
+--DEV PATCH NOTES
+--[[
+*REVERTED SOME CHANGES THAT I THOUGHT WOULD MAKE THE ESP WORK FASTER BUT INSTEAD BROKE IT FOR ALOT OF GAMES
+MARCH 4TH 2022
+]]
+
+
 local ChamsMenu = Instance.new("ScreenGui")
 local Background = Instance.new("Frame")
 local Title = Instance.new("Frame")
@@ -507,17 +514,13 @@ local function JGTNZ_fake_script() -- ChamsMenu.MainHandler
           end)
 	    end
 
-	    game:GetService("Players").PlayerAdded:Connect(function(v)
-				v.CharacterAdded:Connect(function()
-	        pcall(LoadPlayer, v)
-				end)
-	    end)
-
-	    game:GetService("Players").PlayerRemoving:Connect(function(v)
-				v.CharacterRemoving:Connect(function()
-	        pcall(UnloadPlayer, v)
-				end)
-	    end)
+			game:GetService("Players").PlayerAdded:Connect(function(v)
+				pcall(LoadPlayer, v)
+			end)
+			
+			game:GetService("Players").PlayerRemoving:Connect(function(v)
+				pcall(UnloadPlayer, v)
+			end)
 	
 	end
 	
