@@ -430,7 +430,7 @@ Txt.TextScaled = false
 --Important Chams stuff do not touch 
 
 local LoadCharacter = function(v)
-repeat wait() until v.Character ~= nil
+repeat task.wait() until v.Character ~= nil
 local name = v.name
 local char = v.Character or v.CharacterAdded:Wait()
 local Tcolor = Color3.new(v.TeamColor.r, v.TeamColor.g, v.TeamColor.b)
@@ -518,7 +518,7 @@ local LoadPlayer = function(v)
 	v.Changed:Connect(function(prop)
 		if prop == "TeamColor" then
 			UnloadCharacter(v)
-			wait()
+			task.wait()
 			LoadCharacter(v)
 		end
 	end)
