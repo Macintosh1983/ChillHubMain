@@ -402,7 +402,6 @@ local settings_table = {
 local Outline = Instance.new("SelectionBox")
 Outline.Name = "Yes"
 Outline.LineThickness = 0.03
-Outline.Color3 = settings_table.outlinecolor
 
 local PartsBox = Instance.new("BoxHandleAdornment")
 PartsBox.Name = "Yes"
@@ -427,6 +426,7 @@ Txt.TextStrokeTransparency = 0.440
 Txt.Text = "nil"
 Txt.Font = Enum.Font.GothamSemibold
 Txt.TextScaled = false
+
 --Important Chams stuff do not touch 
 
 local LoadCharacter = function(v)
@@ -447,21 +447,25 @@ if v.Character:FindFirstChild("HumanoidRootPart") and
 		if b.ClassName == "Part" or b.ClassName == "MeshPart" and b.Transparency ~= 1 then
 
 			--Main Chams stuff START
+      local funny = Outline:Clone()
+			funny.Name = name .. "Outline"
+			funny.Parent = vHolder
+			funny.Adornee = b
+      funny.Color3 = settings_table.outlinecolor
+
 			local Box = PartsBox:Clone()
 			Box.Name = name .. "Box"
 			Box.Parent = vHolder
 			Box.Adornee = b
 			Box.Size = b.size
+
       if settings_table.teamcolor == true then 
         Box.Color3 = Tcolor
       else if settings_table.teamcolor == false then 
         Box.Color3 = settings_table.chamscolor
         end
       end
-			local funny = Outline:Clone()
-			funny.Name = name .. "Outline"
-			funny.Parent = vHolder
-			funny.Adornee = b
+
 			--Main Chams stuff END
 
 			--NameTag stuff START
@@ -549,7 +553,7 @@ end
 	function delete()
 	    for _,v in next, game.CoreGui:GetChildren() do
 	        if v:FindFirstChildWhichIsA("Folder") then
-	            if v.Name == "ESPFOLDER" then
+	            if v.Name == "UniversalChams" then
 	                for i,b in next, v:GetChildren() do
 	                    b:Destroy()
 	                end
@@ -561,7 +565,7 @@ end
 	function deleteTags()
 	    for _,v in next, game.CoreGui:GetChildren() do
 	        if v:FindFirstChildWhichIsA("Folder") then
-	            if v.Name == "ESPFOLDER" then
+	            if v.Name == "UniversalChams" then
 	                for i,b in next, v:GetChildren() do
 	                    for i,c in next, b:GetChildren() do
 	                        if c.ClassName == "BillboardGui" then
@@ -577,7 +581,7 @@ end
 	function deleteOutlines()
 	    for _,v in next, game.CoreGui:GetChildren() do
 	        if v:FindFirstChildWhichIsA("Folder") then
-	            if v.Name == "ESPFOLDER" then
+	            if v.Name == "UniversalChams" then
 	                for i,b in next, v:GetChildren() do
 	                    for i,c in next, b:GetChildren() do
 	                        if c.ClassName == "SelectionBox" then
@@ -593,7 +597,7 @@ end
 	function deleteBoxes()
 	    for _,v in next, game.CoreGui:GetChildren() do
 	        if v:FindFirstChildWhichIsA("Folder") then
-	            if v.Name == "ESPFOLDER" then
+	            if v.Name == "UniversalChams" then
 	                for i,b in next, v:GetChildren() do
 	                    for i,c in next, b:GetChildren() do
 	                        if c.ClassName == "BoxHandleAdornment" then
@@ -609,7 +613,7 @@ end
 	function deleteText()
 	    for _,v in next, game.CoreGui:GetChildren() do
 	        if v:FindFirstChildWhichIsA("Folder") then
-	            if v.Name == "ESPFOLDER" then
+	            if v.Name == "UniversalChams" then
 	                for i,b in next, v:GetChildren() do
 	                    for i,c in next, b:GetChildren() do
 	                        if c.ClassName == "BillboardGui" then
@@ -755,9 +759,8 @@ end
 	    deleteBoxes()
 	    task.wait()
 	    chams()
-	    end
-	    
-	end)
+	    end   
+end)
 	
 	gui.Background.TextColor.MouseButton1Click:Connect(function()
 	    local Rc = colorValue.Value.R
@@ -773,6 +776,7 @@ end
 	    end
 	end)
 end
+
 coroutine.wrap(JGTNZ_fake_script)()
 local function THEVCTH_fake_script() -- ChamsMenu.ColourWheelHandler 
 	local script = Instance.new('LocalScript', ChamsMenu)
