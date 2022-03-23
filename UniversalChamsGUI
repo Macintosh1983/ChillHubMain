@@ -10,8 +10,7 @@
 
 --DEV PATCH NOTES
 --[[
-*REVERTED SOME CHANGES THAT I THOUGHT WOULD MAKE THE ESP WORK FASTER BUT INSTEAD BROKE IT FOR ALOT OF GAMES
-MARCH 4TH 2022
+MADE SOME MAJOR CHANGES TO IMPROVE THE CHAMS MASSIVELY NOW RUNS SMOOTHLY!!!
 ]]
 
 
@@ -377,135 +376,158 @@ local function JGTNZ_fake_script() -- ChamsMenu.MainHandler
 	
 	
 	--version
-	local version = '2.3'
+	local version = '2.4'
 	gui.Background.VersionLabel.Text = "Version: "..version
 	
-	--Boring Stuff Below (DO NOT CHANGE ANYTHING BELOW)
-	local ESPFOLDER = Instance.new('Folder', game.CoreGui)
-	ESPFOLDER.Name = 'ESPFOLDER'
-	
-	local people = game:GetService("Players")
-	local self = people.LocalPlayer
-	
-	local Outline = Instance.new("SelectionBox")
-	Outline.Name = "Yes"
-	Outline.LineThickness = 0.03
-	
-	
-	local PartsBox = Instance.new("BoxHandleAdornment")
-	PartsBox.Name = "Yes"
-	PartsBox.AlwaysOnTop = true
-	PartsBox.Transparency = .4
-	PartsBox.ZIndex = 0
-	
-	local NameTag = Instance.new("BillboardGui")
-	NameTag.Name = "nilNameTag"
-	NameTag.Enabled = false
-	NameTag.Size = UDim2.new(0, 200, 0, 50)
-	NameTag.AlwaysOnTop = true
-	NameTag.StudsOffset = Vector3.new(0, 1.8, 0)
-	
-	local Tag = Instance.new("TextLabel", NameTag)
-	Tag.Name = "Tag"
-	Tag.BackgroundTransparency = 1
-	Tag.Position = UDim2.new(0, -50, 0, 0)
-	Tag.Size = UDim2.new(0, 300, 0, 20)
-	Tag.TextSize = 14
-	Tag.TextStrokeTransparency = 0.440
-	Tag.Text = "nil"
-	Tag.Font = Enum.Font.GothamSemibold
-	Tag.TextScaled = false
-	
-	local LoadCharacter = function(v)
-	    for i,v in next, people:GetPlayers() do
-	        if v.Name ~= self.Name then
-	            local Tcolor = Color3.new(v.TeamColor.r, v.TeamColor.g, v.TeamColor.b)
-	            local char = v.Character or v.CharacterAdded:Wait()
-	            local vHolder = ESPFOLDER:FindFirstChild(v.Name)
-	            vHolder:ClearAllChildren()
-	            if char:FindFirstChild("HumanoidRootPart") and
-	                char:FindFirstChild("Humanoid") and
-	                char:FindFirstChild("Humanoid").Health ~= 0 then
-	                for i,v in next, char:GetChildren() do
-	                    if v.ClassName == "Part" or v.ClassName == "MeshPart" and v.Transparency ~= 1 then
+--Boring Stuff Below (DO NOT CHANGE ANYTHING BELOW)
 
-	                        local funny = Outline:Clone()
-	                        funny.Name = v.Parent.Name .. "Outline"
-	                        funny.Parent = vHolder
-	                        funny.Adornee = v
-	                        funny.Color3 = settings_table.outlinecolor
+--Variables START
+local people = game:GetService("Players")
+local self = people.LocalPlayer
 
-	                        local Box = PartsBox:Clone()
-	                        Box.Name = v.Parent.Name .. "Box"
-	                        Box.Parent = vHolder
-	                        Box.Adornee = v
-	                        Box.Size = v.size
+local ESPFOLDER = Instance.new('Folder', game.CoreGui)
+ESPFOLDER.Name = 'UniversalChams'
 
-	                        if settings_table.teamcolor == true then 
-	                            Box.Color3 = Tcolor
-	                        else if settings_table.teamcolor == false then 
-	                            Box.Color3 = settings_table.chamscolor
-	                            end
-	                        end
+local settings_table = {
+	Enabled = true,
+	outlinecolor = Color3.fromRGB(255, 255, 255),
+	chamscolor = Color3.fromRGB(207, 66, 0),
+	textcolor = Color3.fromRGB(184, 108, 190),
+	teamcolor = true,
+	names = true
+}
+--Variables END
 
-	                        local Name = NameTag:Clone()
-	                        Name.Name = v.Parent.Name .. "NameTag"
-	                        if settings_table.names == true then
-	                          Name.Enabled = true
-	                        else if settings_table.names == false then
-	                          Name.Enabled = false
-	                            end
-	                        end
-	                        Name.Parent = vHolder
-	                        Name.Adornee = char.Head
-	                        if not Name.Adornee then
-	                            return UnloadCharacter(v)
-	                        end
-	                        Name.Tag.Text = char.Humanoid.Parent.Name
-	                        if settings_table.teamcolor == true then 
-	                          Name.Tag.TextColor3 = Tcolor
-	                        else if settings_table.teamcolor == false then 
-	                          Name.Tag.TextColor3 = settings_table.textcolor
+--Important Chams stuff do not touch 
+local Outline = Instance.new("SelectionBox")
+Outline.Name = "Yes"
+Outline.LineThickness = 0.03
+Outline.Color3 = settings_table.outlinecolor
 
-                            
-	                            end
-	                        end
-	                    end
-	                end
-	            end
-	        end
-	    end
+local PartsBox = Instance.new("BoxHandleAdornment")
+PartsBox.Name = "Yes"
+PartsBox.AlwaysOnTop = true
+PartsBox.Transparency = .4
+PartsBox.ZIndex = 0
+
+local NameTag = Instance.new("BillboardGui")
+NameTag.Name = "nilNameTag"
+NameTag.Enabled = false
+NameTag.Size = UDim2.new(0, 200, 0, 50)
+NameTag.AlwaysOnTop = true
+NameTag.StudsOffset = Vector3.new(0, 1.8, 0)
+
+local Txt = Instance.new("TextLabel", NameTag)
+Txt.Name = "Txt"
+Txt.BackgroundTransparency = 1
+Txt.Position = UDim2.new(0, -50, 0, 0)
+Txt.Size = UDim2.new(0, 300, 0, 20)
+Txt.TextSize = 14
+Txt.TextStrokeTransparency = 0.440
+Txt.Text = "nil"
+Txt.Font = Enum.Font.GothamSemibold
+Txt.TextScaled = false
+--Important Chams stuff do not touch 
+
+local LoadCharacter = function(v)
+repeat wait() until v.Character ~= nil
+local name = v.name
+local char = v.Character or v.CharacterAdded:Wait()
+local Tcolor = Color3.new(v.TeamColor.r, v.TeamColor.g, v.TeamColor.b)
+
+if v.name ~= self.name then
+
+v.Character:WaitForChild("Humanoid")
+local vHolder = ESPFOLDER:FindFirstChild(v.Name)
+vHolder:ClearAllChildren()
+if v.Character:FindFirstChild("HumanoidRootPart") and 
+	 v.Character:FindFirstChild("Humanoid") and 
+	 v.Character:FindFirstChild("Humanoid").Health ~= 0 then
+	for i,b in next, v.Character:GetChildren() do
+		if b.ClassName == "Part" or b.ClassName == "MeshPart" and b.Transparency ~= 1 then
+
+			--Main Chams stuff START
+			local Box = PartsBox:Clone()
+			Box.Name = name .. "Box"
+			Box.Parent = vHolder
+			Box.Adornee = b
+			Box.Size = b.size
+      if settings_table.teamcolor == true then 
+        Box.Color3 = Tcolor
+      else if settings_table.teamcolor == false then 
+        Box.Color3 = settings_table.chamscolor
+        end
+      end
+			local funny = Outline:Clone()
+			funny.Name = name .. "Outline"
+			funny.Parent = vHolder
+			funny.Adornee = b
+			--Main Chams stuff END
+
+			--NameTag stuff START
+			local tag = NameTag:Clone()
+			tag.Name = name.. "NameTag"
+			if settings_table.names == true then
+				tag.Enabled = true
+			else if settings_table.names == false then
+				tag.Enabled = false
+				end
+			end
+
+			tag.Txt.Text = name 
+			tag.Adornee = char:WaitForChild("Head")
+			tag.Parent = vHolder
+			if not tag.Adornee then
+				return  UnloadCharacter(v)
+				end
+
+			if settings_table.teamcolor == true then 
+				tag.Txt.TextColor3 = Tcolor
+			else if settings_table.teamcolor == false then 
+				tag.Txt.TextColor3 = settings_table.textcolor
+				end
+			end
+			--NameTag stuff END
+
+				end
+			end
+		end
 	end
-	
-	local UnloadCharacter = function(v)
-	    local vHolder = ESPFOLDER:FindFirstChild(v.Name)
-	    if vHolder and (vHolder:FindFirstChild(v.Parent.Name .. "Box") ~= nil or vHolder:FindFirstChild(v.Parent.Name .. "NameTag") ~= nil) or vHolder:FindFirstChild(v.Parent.Name .. "Outline") then
-	        vHolder:ClearAllChildren()
-	    end
-	end
-	
-	local LoadPlayer = function(v)
-	    local vHolder = Instance.new("Folder", ESPFOLDER)
-	    vHolder.Name = v.Name
+end
 
-	    v.CharacterAdded:Connect(function()
-	        pcall(LoadCharacter, v)
-	    end)
-
-	    v.CharacterRemoving:Connect(function()
-	        pcall(UnloadCharacter, v)
-	    end)
-
-	    LoadCharacter(v)
+local UnloadCharacter = function(v)
+	local vHolder = ESPFOLDER:FindFirstChild(v.Name)
+	if vHolder and (vHolder:FindFirstChild(v.Name .. "Box") ~= nil or vHolder:FindFirstChild(v.Name .. "NameTag") ~= nil or nil or vHolder:FindFirstChild(v.Name .. "Outline") ) then
+		vHolder:ClearAllChildren()
 	end
-	
-	local UnloadPlayer = function(v)
-	    UnloadCharacter(v)
-	    local vHolder = ESPFOLDER:FindFirstChild(v.Name)
-	    if vHolder then
-	        vHolder:Destroy()
-	    end
+end
+
+local LoadPlayer = function(v)
+	local vHolder = Instance.new("Folder", ESPFOLDER)
+	vHolder.Name = v.Name
+	v.CharacterAdded:Connect(function()
+		pcall(LoadCharacter, v)
+	end)
+	v.CharacterRemoving:Connect(function()
+		pcall(UnloadCharacter, v)
+	end)
+	v.Changed:Connect(function(prop)
+		if prop == "TeamColor" then
+			UnloadCharacter(v)
+			wait()
+			LoadCharacter(v)
+		end
+	end)
+	LoadCharacter(v)
+end
+
+local UnloadPlayer = function(v)
+	UnloadCharacter(v)
+	local vHolder = ESPFOLDER:FindFirstChild(v.Name)
+	if vHolder then
+		vHolder:Destroy()
 	end
+end
 	
 	function chams()
 	
