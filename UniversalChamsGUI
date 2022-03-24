@@ -363,18 +363,7 @@ local function JGTNZ_fake_script() -- ChamsMenu.MainHandler
 
 	local gui = script.Parent
 	local colorValue = gui.ColorValue
-	
-	--Settings
-	local settings_table = {
-	    Enabled = false,
-	    outlinecolor = Color3.fromRGB(255, 255, 255),
-	    chamscolor = Color3.fromRGB(207, 66, 0),
-	    textcolor = Color3.fromRGB(184, 108, 190),
-	    teamcolor = true,
-	    names = true
-	}
-	
-	
+  
 	--version
 	local version = '2.4'
 	gui.Background.VersionLabel.Text = "Version: "..version
