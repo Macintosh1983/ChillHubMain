@@ -424,23 +424,23 @@ local name = v.name
 local char = v.Character or v.CharacterAdded:Wait()
 local Tcolor = Color3.new(v.TeamColor.r, v.TeamColor.g, v.TeamColor.b)
 
+local vHolder = ESPFOLDER:FindFirstChild(v.Name)
+vHolder:ClearAllChildren()
 if v.name ~= self.name then
 
 v.Character:WaitForChild("Humanoid")
-local vHolder = ESPFOLDER:FindFirstChild(v.Name)
-vHolder:ClearAllChildren()
 if v.Character:FindFirstChild("HumanoidRootPart") and 
-	 v.Character:FindFirstChild("Humanoid") and 
-	 v.Character:FindFirstChild("Humanoid").Health ~= 0 then
-	for i,b in next, v.Character:GetChildren() do
+   v.Character:FindFirstChild("Humanoid") and 
+   v.Character:FindFirstChild("Humanoid").Health ~= 0 then
+    for i,b in next, v.Character:GetChildren() do
 		if b.ClassName == "Part" or b.ClassName == "MeshPart" and b.Transparency ~= 1 then
 
 			--Main Chams stuff START
-      local funny = Outline:Clone()
+            local funny = Outline:Clone()
 			funny.Name = name .. "Outline"
 			funny.Parent = vHolder
 			funny.Adornee = b
-      funny.Color3 = settings_table.outlinecolor
+            funny.Color3 = settings_table.outlinecolor
 
 			local Box = PartsBox:Clone()
 			Box.Name = name .. "Box"
@@ -448,13 +448,12 @@ if v.Character:FindFirstChild("HumanoidRootPart") and
 			Box.Adornee = b
 			Box.Size = b.size
 
-      if settings_table.teamcolor == true then 
-        Box.Color3 = Tcolor
-      else if settings_table.teamcolor == false then 
-        Box.Color3 = settings_table.chamscolor
-        end
-      end
-
+            if settings_table.teamcolor == true then 
+                Box.Color3 = Tcolor
+            else if settings_table.teamcolor == false then 
+                Box.Color3 = settings_table.chamscolor
+                end
+            end
 			--Main Chams stuff END
 
 			--NameTag stuff START
@@ -470,9 +469,10 @@ if v.Character:FindFirstChild("HumanoidRootPart") and
 			tag.Txt.Text = name 
 			tag.Adornee = char:WaitForChild("Head")
 			tag.Parent = vHolder
+            
 			if not tag.Adornee then
 				return  UnloadCharacter(v)
-				end
+			end
 
 			if settings_table.teamcolor == true then 
 				tag.Txt.TextColor3 = Tcolor
@@ -522,6 +522,18 @@ local UnloadPlayer = function(v)
 	end
 end
 	
+    function delete()
+        for _,v in next, game.CoreGui:GetChildren() do
+            if v:FindFirstChildWhichIsA("Folder") then
+                if v.Name == "UniversalChams" then
+                    for i,b in next, v:GetChildren() do
+                        b:Destroy()
+                    end
+                end
+            end
+        end
+    end
+
 	function chams()
 	
 	    for i,v in next, game:GetService("Players"):GetPlayers() do
@@ -530,25 +542,17 @@ end
 	    end
 
 			game:GetService("Players").PlayerAdded:Connect(function(v)
+                if settings_table.enabled = true then
 				pcall(LoadPlayer, v)
+                else 
+                    delete()
+                end
 			end)
 			
 			game:GetService("Players").PlayerRemoving:Connect(function(v)
 				pcall(UnloadPlayer, v)
 			end)
 	
-	end
-	
-	function delete()
-	    for _,v in next, game.CoreGui:GetChildren() do
-	        if v:FindFirstChildWhichIsA("Folder") then
-	            if v.Name == "UniversalChams" then
-	                for i,b in next, v:GetChildren() do
-	                    b:Destroy()
-	                end
-	            end
-	        end
-	    end
 	end
 	
 	function deleteTags()
