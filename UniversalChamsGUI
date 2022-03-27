@@ -542,7 +542,7 @@ end
 	    end
 
 			game:GetService("Players").PlayerAdded:Connect(function(v)
-                if settings_table.enabled = true then
+                if settings_table.enabled == true then
 				pcall(LoadPlayer, v)
                 else 
                     delete()
