@@ -410,54 +410,27 @@ Txt.Name = "Txt"
 Txt.BackgroundTransparency = 1
 Txt.Position = UDim2.new(0, -50, 0, 0)
 Txt.Size = UDim2.new(0, 300, 0, 20)
-Txt.TextSize = 14
-Txt.TextStrokeTransparency = 0.440
+Txt.TextSize = 15
+Txt.TextStrokeTransparency = 0.1
 Txt.Text = "nil"
-Txt.Font = Enum.Font.GothamSemibold
+Txt.Font = Enum.Font.GothamBold
 Txt.TextScaled = false
-
---Important Chams stuff do not touch 
 
 local LoadCharacter = function(v)
 repeat task.wait() until v.Character ~= nil
 local name = v.name
 local char = v.Character or v.CharacterAdded:Wait()
+local hrp = char:WaitForChild("HumanoidRootPart")
+local hum = hrp.Parent:WaitForChild("Humanoid")
 local Tcolor = Color3.new(v.TeamColor.r, v.TeamColor.g, v.TeamColor.b)
 
 if v.name ~= self.name then
-
 v.Character:WaitForChild("Humanoid")
 local vHolder = ESPFOLDER:FindFirstChild(v.Name)
 vHolder:ClearAllChildren()
-if v.Character:FindFirstChild("HumanoidRootPart") and 
-	 v.Character:FindFirstChild("Humanoid") and 
-	 v.Character:FindFirstChild("Humanoid").Health ~= 0 then
-	for i,b in next, v.Character:GetChildren() do
-		if b.ClassName == "Part" or b.ClassName == "MeshPart" and b.Transparency ~= 1 then
 
-			--Main Chams stuff START
-      local funny = Outline:Clone()
-			funny.Name = name .. "Outline"
-			funny.Parent = vHolder
-			funny.Adornee = b
-      funny.Color3 = settings_table.outlinecolor
+--NameTag stuff START
 
-			local Box = PartsBox:Clone()
-			Box.Name = name .. "Box"
-			Box.Parent = vHolder
-			Box.Adornee = b
-			Box.Size = b.size
-
-      if settings_table.teamcolor == true then 
-        Box.Color3 = Tcolor
-      else if settings_table.teamcolor == false then 
-        Box.Color3 = settings_table.chamscolor
-        end
-      end
-
-			--Main Chams stuff END
-
-			--NameTag stuff START
 			local tag = NameTag:Clone()
 			tag.Name = name.. "NameTag"
 			if settings_table.names == true then
@@ -480,8 +453,37 @@ if v.Character:FindFirstChild("HumanoidRootPart") and
 				tag.Txt.TextColor3 = settings_table.textcolor
 				end
 			end
-			--NameTag stuff END
 
+--NameTag stuff END
+
+
+if v.Character:FindFirstChild("HumanoidRootPart") and 
+	 v.Character:FindFirstChild("Humanoid") and 
+	 v.Character:FindFirstChild("Humanoid").Health ~= 0 then
+	for i,b in next, v.Character:GetChildren() do
+		if b.ClassName == "Part" or b.ClassName == "MeshPart" and b.Transparency ~= 1 then
+
+			--Main Chams stuff START
+
+      local funny = Outline:Clone()
+			funny.Name = name .. "Outline"
+			funny.Parent = vHolder
+			funny.Adornee = b
+      funny.Color3 = settings_table.outlinecolor
+
+			local Box = PartsBox:Clone()
+			Box.Name = name .. "Box"
+			Box.Parent = vHolder
+			Box.Adornee = b
+			Box.Size = b.size
+      if settings_table.teamcolor == true then 
+        Box.Color3 = Tcolor
+      else if settings_table.teamcolor == false then 
+        Box.Color3 = settings_table.chamscolor
+        end
+      end
+
+			--Main Chams stuff END
 				end
 			end
 		end
@@ -521,6 +523,7 @@ local UnloadPlayer = function(v)
 		vHolder:Destroy()
 	end
 end
+
 function delete()
   for _,v in next, game.CoreGui:GetChildren() do
       if v:FindFirstChildWhichIsA("Folder") then
@@ -548,7 +551,7 @@ function chams()
                 end
             end
   end)
-  
+
   game:GetService("Players").PlayerRemoving:Connect(function(v)
     pcall(UnloadPlayer, v)
   end)
@@ -673,7 +676,6 @@ end
 	        if settings_table.Enabled == true then
 	        deleteTags()
 	        settings_table.names = true
-	        task.wait()
 	        chams()
 	        end
 	    end
@@ -682,7 +684,6 @@ end
 	        if settings_table.Enabled == true then
 	        deleteTags()
 	        settings_table.names = false
-	        task.wait()
 	        chams()
 	        end
 	    end
@@ -712,7 +713,6 @@ end
 	        if settings_table.Enabled == true then
 	        delete()
 	        settings_table.teamcolor = true
-	        task.wait()
 	        chams()
 	        end
 	    end
@@ -720,7 +720,6 @@ end
 	        if settings_table.Enabled == true then
 	        delete()
 	        settings_table.teamcolor = false
-	        task.wait()
 	        chams()
 	        end
 	    end
@@ -736,7 +735,6 @@ end
 	    if settings_table.Enabled == true then
 	    settings_table.outlinecolor = Color3.fromRGB(r,g,b)
 	    deleteOutlines()
-	    task.wait()
 	    chams()
 	    end
 	end)
@@ -751,7 +749,6 @@ end
 	    if settings_table.Enabled == true then
 	    settings_table.chamscolor = Color3.fromRGB(r,g,b)
 	    deleteBoxes()
-	    task.wait()
 	    chams()
 	    end   
 end)
@@ -765,7 +762,6 @@ end)
 	    if settings_table.Enabled == true then
 	    settings_table.textcolor = Color3.fromRGB(r,g,b)
 	    deleteText()
-	    task.wait()
 	    chams()
 	    end
 	end)
