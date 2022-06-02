@@ -1,16 +1,18 @@
 --[[
-  _    _       _                          _    _____ _                         
- | |  | |     (_)                        | |  / ____| |                       
- | |  | |_ __  ___   _____ _ __ ___  __ _| | | |    | |__   __ _ _ __ ___  ___ 
- | |  | | '_ \| \ \ / / _ \ '__/ __|/ _` | | | |    | '_ \ / _` | '_ ` _ \/ __|
- | |__| | | | | |\ V /  __/ |  \__ \ (_| | | | |____| | | | (_| | | | | | \__ \
-  \____/|_| |_|_| \_/ \___|_|  |___/\__,_|_|  \_____|_| |_|\__,_|_| |_| |_|___/
-   Made by Chillin aka mac!                                                                                                                                                      
+
+ ██████ ██   ██ ██ ██      ██      ██ ███    ██      █████  ██   ██  █████      ███    ███  █████   ██████ 
+██      ██   ██ ██ ██      ██      ██ ████   ██     ██   ██ ██  ██  ██   ██     ████  ████ ██   ██ ██      
+██      ███████ ██ ██      ██      ██ ██ ██  ██     ███████ █████   ███████     ██ ████ ██ ███████ ██      
+██      ██   ██ ██ ██      ██      ██ ██  ██ ██     ██   ██ ██  ██  ██   ██     ██  ██  ██ ██   ██ ██      
+ ██████ ██   ██ ██ ███████ ███████ ██ ██   ████     ██   ██ ██   ██ ██   ██     ██      ██ ██   ██  ██████
+
 ]]
 
---DEV PATCH NOTES
 --[[
-MADE SOME MAJOR CHANGES TO IMPROVE THE CHAMS MASSIVELY NOW RUNS SMOOTHLY!!!
+
+(DEV PATCH NOTES)
+--Hopefully Fixed the issue where players were not added in after spawning
+--Made the esp run alot smoother by changing up some sloppy code
 ]]
 
 
@@ -358,19 +360,19 @@ local function XOUKU_fake_script() -- Background.OpenNClose
 	GuiOpen()
 end
 coroutine.wrap(XOUKU_fake_script)()
-local function JGTNZ_fake_script() -- ChamsMenu.MainHandler 
+local function JGTNZ_fake_script()
 	local script = Instance.new('LocalScript', ChamsMenu)
 
 	local gui = script.Parent
 	local colorValue = gui.ColorValue
   
-	--version
-	local version = '2.4'
+	--//version\\--
+	local version = '3.0'
 	gui.Background.VersionLabel.Text = "Version: "..version
 	
---Boring Stuff Below (DO NOT CHANGE ANYTHING BELOW)
+--//Boring Stuff Below (DO NOT CHANGE ANYTHING BELOW)\\--
 
---Variables START
+--//Variables START\\--
 local people = game:GetService("Players")
 local self = people.LocalPlayer
 
@@ -385,9 +387,9 @@ local settings_table = {
 	teamcolor = true,
 	names = true
 }
---Variables END
+--//Variables END\\--
 
---Important Chams stuff do not touch 
+--//Important Chams stuff do not touch\\--
 local Outline = Instance.new("SelectionBox")
 Outline.Name = "Yes"
 Outline.LineThickness = 0.03
@@ -425,11 +427,14 @@ local hum = hrp.Parent:WaitForChild("Humanoid")
 local Tcolor = Color3.new(v.TeamColor.r, v.TeamColor.g, v.TeamColor.b)
 
 if v.name ~= self.name then
-v.Character:WaitForChild("Humanoid")
-local vHolder = ESPFOLDER:FindFirstChild(v.Name)
-vHolder:ClearAllChildren()
+	v.Character:WaitForChild("Humanoid")
+	local vHolder = ESPFOLDER:FindFirstChild(v.name)
+	
+	if ESPFOLDER:FindFirstChild(v.name) then
+		vHolder:ClearAllChildren()
+	end
 
---NameTag stuff START
+--//NameTag stuff START\\--
 
 			local tag = NameTag:Clone()
 			tag.Name = name.. "NameTag"
@@ -443,9 +448,10 @@ vHolder:ClearAllChildren()
 			tag.Txt.Text = name 
 			tag.Adornee = char:WaitForChild("Head")
 			tag.Parent = vHolder
+
 			if not tag.Adornee then
-				return  UnloadCharacter(v)
-				end
+				pcall(UnloadCharacter,v)
+			end
 
 			if settings_table.teamcolor == true then 
 				tag.Txt.TextColor3 = Tcolor
@@ -454,16 +460,13 @@ vHolder:ClearAllChildren()
 				end
 			end
 
---NameTag stuff END
+--//NameTag stuff END\\--
 
 
-if v.Character:FindFirstChild("HumanoidRootPart") and 
-	 v.Character:FindFirstChild("Humanoid") and 
-	 v.Character:FindFirstChild("Humanoid").Health ~= 0 then
+if v.Character:FindFirstChild("Humanoid").Health ~= 0 then
 	for i,b in next, v.Character:GetChildren() do
 		if b.ClassName == "Part" or b.ClassName == "MeshPart" and b.Transparency ~= 1 then
-
-			--Main Chams stuff START
+			--//Main Chams stuff START\\--
 
       local funny = Outline:Clone()
 			funny.Name = name .. "Outline"
@@ -483,7 +486,7 @@ if v.Character:FindFirstChild("HumanoidRootPart") and
         end
       end
 
-			--Main Chams stuff END
+			--//Main Chams stuff END\\--
 				end
 			end
 		end
@@ -492,36 +495,46 @@ end
 
 local UnloadCharacter = function(v)
 	local vHolder = ESPFOLDER:FindFirstChild(v.Name)
-	if vHolder and (vHolder:FindFirstChild(v.Name .. "Box") ~= nil or vHolder:FindFirstChild(v.Name .. "NameTag") ~= nil or nil or vHolder:FindFirstChild(v.Name .. "Outline") ) then
-		vHolder:ClearAllChildren()
+	
+	for i,v in next, vHolder:GetChildren() do
+		if v:FindFirstChild(v.Name.. "Box") ~=nil and v:FindFirstChild(v.Name.. "NameTag") ~=nil  and v:FindFirstChild(v.Name.. "Outline") ~=nil then
+			v:Destroy()
+		end
 	end
+
 end
 
 local LoadPlayer = function(v)
 	local vHolder = Instance.new("Folder", ESPFOLDER)
 	vHolder.Name = v.Name
+
 	v.CharacterAdded:Connect(function()
 		pcall(LoadCharacter, v)
 	end)
+
 	v.CharacterRemoving:Connect(function()
 		pcall(UnloadCharacter, v)
 	end)
+
 	v.Changed:Connect(function(prop)
 		if prop == "TeamColor" then
-			UnloadCharacter(v)
+			pcall(UnloadCharacter,v)
 			task.wait()
-			LoadCharacter(v)
+			pcall(LoadCharacter,v)
 		end
 	end)
-	LoadCharacter(v)
+
+	pcall(LoadCharacter,v)
 end
 
 local UnloadPlayer = function(v)
-	UnloadCharacter(v)
+	pcall(UnloadCharacter, v)
 	local vHolder = ESPFOLDER:FindFirstChild(v.Name)
+
 	if vHolder then
 		vHolder:Destroy()
 	end
+
 end
 
 function delete()
@@ -539,21 +552,27 @@ end
 function chams()
 	
   for i,v in next, game:GetService("Players"):GetPlayers() do
-      task.spawn(function() pcall(LoadPlayer, v) 
-      end)
+				pcall(LoadPlayer, v) 
   end
 
-  game:GetService("Players").PlayerAdded:Connect(function(v)
-            if settings_table.enabled == true then
-    pcall(LoadPlayer, v)
-            else if settings_table.enabled == false then
-                delete()
-                end
-            end
-  end)
+	game:GetService("Players").PlayerAdded:Connect(function(plr)
+    plr.CharacterAdded:Connect(function(characmodel)
+      characmodel:WaitForChild('Humanoid').Died:Connect(function()
 
-  game:GetService("Players").PlayerRemoving:Connect(function(v)
-    pcall(UnloadPlayer, v)
+        if settings_table.enabled == true then
+
+        pcall(UnloadPlayer, v)
+
+        plr.CharacterAdded:wait()
+				
+        pcall(LoadPlayer, v)
+        else if settings_table.enabled == false then
+          delete()
+          end
+        end
+
+      end)
+    end)
   end)
 
 end
